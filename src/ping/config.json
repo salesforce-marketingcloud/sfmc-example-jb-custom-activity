@@ -15,21 +15,21 @@
     "execute": {
       "inArguments": [],
       "outArguments": [],
-      "url": "https://jb-outbound-responder.herokuapp.com/ping/execute"
+      "url": "https://sfmc-example-custom-activity.herokuapp.com/ping/execute"
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://jb-outbound-responder.herokuapp.com/ping/save"
+      "url": "https://sfmc-example-custom-activity.herokuapp.com/ping/save"
     },
     "publish": {
-      "url": "https://jb-outbound-responder.herokuapp.com/ping/publish"
+      "url": "https://sfmc-example-custom-activity.herokuapp.com/ping/publish"
     },
     "validate": {
-      "url": "https://jb-outbound-responder.herokuapp.com/ping/validate"
+      "url": "https://sfmc-example-custom-activity.herokuapp.com/ping/validate"
     },
     "stop": {
-      "url": "https://jb-outbound-responder.herokuapp.com/ping/stop"
+      "url": "https://sfmc-example-custom-activity.herokuapp.com/ping/stop"
     }
   },
   "userInterfaces": {
