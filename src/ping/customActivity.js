@@ -71,10 +71,14 @@ define([
 
     var ping = getArg('ping');
 
+    console.log('ping', ping);
+
     if (ping && ping.value) {
+      console.log('update by value', ping.value);
       // If there is a message, skip to the summary step
       $('#ping').combobox('selectByValue', ping.value);
     } else if(ping && ping.text) {
+      console.log('update by text', ping.text);
         $('#ping :text').val(ping.text);
     }
 
