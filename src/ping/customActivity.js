@@ -62,8 +62,8 @@ define([
     function getArg(inArguments, arg) {
       $.each(inArguments, function(index, inArgument) {
         $.each(inArgument, function(key, val) {
-          if (key === 'ping') {
-            ping = val;
+          if (key === arg) {
+            return val;
           }
         });
       });
