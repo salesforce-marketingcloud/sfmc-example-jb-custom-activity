@@ -27,7 +27,7 @@ define([
     //initialize();
   }
 
-  function updateNextButton() {
+  function updateNextButton(force) {
 
     console.log('updateNextButton', getMessage());
 
@@ -35,8 +35,8 @@ define([
     // connection to alert it to update the button.
     connection.trigger('updateButton', {
       button: 'next',
-      text: getMessage() ? 'done' : 'next',
-      enabled: Boolean(getMessage())
+      text: (force || getMessage()) ? 'done' : 'next',
+      enabled: Boolean((force || getMessage()))
     });
   }
 
@@ -83,6 +83,9 @@ define([
 
     // update the next button should the inputs change.
     $('#ping').on('changed.fu.combobox', updateNextButton);
+    $('#ping :text').on('keypress', function() {
+      updateNextButton($('#ping :text').val() !== "");
+    });
   }
 
   // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
