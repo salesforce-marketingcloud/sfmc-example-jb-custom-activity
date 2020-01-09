@@ -78,7 +78,10 @@ define([
         $('#ping :text').val(ping.text);
     }
 
-    // update the state of the next button if the user changes anything
+    // update the next button upon load.
+    updateNextButton();
+
+    // update the next button should the inputs change.
     $('#ping').on('changed.fu.combobox', updateNextButton);
   }
 
