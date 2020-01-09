@@ -63,14 +63,17 @@ define([
 
     function getArg(inArguments, arg) {
       console.log('getArg', inArguments, arg);
-
+      var toReturn;
       $.each(inArguments, function(index, inArgument) {
-        $.each(inArgument, function(key, val) {
-          if (key === arg) {
-            return val;
-          }
-        });
+        if(!toReturn) {
+          $.each(inArgument, function(key, val) {
+            if (key === arg) {
+              toReturn = val;
+            }
+          });
+        }
       });
+      return toReturn;
     }
 
     var ping = getArg(inArguments, 'ping');
