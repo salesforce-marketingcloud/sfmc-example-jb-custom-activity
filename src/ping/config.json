@@ -7,7 +7,7 @@
   "type": "REST",
   "lang": {
     "en-US": {
-      "name": "Ping Activity",
+      "name": "Example Ping!",
       "description": "Ping JB Engine's heroku instance with an expected delay that the user specifies."
     }
   },
