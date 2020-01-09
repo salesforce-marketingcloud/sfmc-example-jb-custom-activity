@@ -28,9 +28,6 @@ define([
   }
 
   function updateNextButton(force) {
-
-    console.log('updateNextButton', getMessage());
-
     // we can enable the button for 'done' by calling the
     // connection to alert it to update the button.
     connection.trigger('updateButton', {
@@ -59,10 +56,7 @@ define([
 
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
-    console.log('inArguments', inArguments);
-
     function getArg(inArguments, arg) {
-      console.log('getArg', inArguments, arg);
       var toReturn;
       $.each(inArguments, function(index, inArgument) {
         if(!toReturn) {
@@ -78,14 +72,10 @@ define([
 
     var ping = getArg(inArguments, 'ping');
 
-    console.log('ping', ping);
-
     if (ping && ping.value) {
-      console.log('update by value', ping.value);
       // If there is a message, skip to the summary step
       $('#ping').combobox('selectByValue', ping.value);
     } else if(ping && ping.text) {
-      console.log('update by text', ping.text);
         $('#ping :text').val(ping.text);
     }
 
