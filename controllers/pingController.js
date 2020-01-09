@@ -37,7 +37,5 @@ exports.executePing = (req, res) => {
       .json(responseObject);
   }
 
-
-
   sendResponse();
 };
