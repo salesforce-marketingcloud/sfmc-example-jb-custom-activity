@@ -1,0 +1,56 @@
+{
+  "workflowApiVersion": "1.1",
+  "metaData": {
+    "icon": "/static/images/megaphone.svg",
+    "category": "customer"
+  },
+  "type": "REST",
+  "lang": {
+    "en-US": {
+      "name": "Ping Activity",
+      "description": "Ping JB Engine's heroku instance with an expected delay that the user specifies."
+    }
+  },
+  "arguments": {
+    "execute": {
+      "inArguments": [],
+      "outArguments": [],
+      "url": "https://jb-outbound-responder.herokuapp.com/ping/execute"
+    }
+  },
+  "configurationArguments": {
+    "save": {
+      "url": "https://jb-outbound-responder.herokuapp.com/ping/save"
+    },
+    "publish": {
+      "url": "https://jb-outbound-responder.herokuapp.com/ping/publish"
+    },
+    "validate": {
+      "url": "https://jb-outbound-responder.herokuapp.com/ping/validate"
+    },
+    "stop": {
+      "url": "https://jb-outbound-responder.herokuapp.com/ping/stop"
+    }
+  },
+  "userInterfaces": {
+    "configModal": {
+      "height": 550,
+      "width": 500,
+      "fullscreen": false
+    }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "inArguments": [ ],
+        "outArguments": [{
+          "foundSignupDate": {
+            "dataType": "Date",
+            "direction": "out",
+            "access": "visible"
+          }
+        }]
+      }
+    }
+  }
+}

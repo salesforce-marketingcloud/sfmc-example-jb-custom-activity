@@ -1,0 +1,155 @@
+body {
+  font-family: "Salesforce Sans", Arial, sans-serif;
+}
+
+.container-fluid {
+  padding-top: 5px;
+}
+
+.icon-container {
+  position: relative;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translateX(-50%);
+}
+
+.icon-container.copy-selected .icon-background {
+  -webkit-box-shadow: 2px 2px 12px 2px #1172cf;
+  -moz-box-shadow: 2px 2px 12px 2px #1172cf;
+  box-shadow: 2px 2px 12px 2px #1172cf;
+  transition: box-shadow 450ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.icon-container .icon-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.icon-container .icon-background.selected {
+  -webkit-box-shadow: 2px 2px 12px 2px #1172cf;
+  -moz-box-shadow: 2px 2px 12px 2px #1172cf;
+  box-shadow: 2px 2px 12px 2px #1172cf;
+  transition: box-shadow 450ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.icon-container .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-filter: grayscale(100) brightness(100);
+  filter: grayscale(100) brightness(100);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.icon-container .icon.no-filter {
+  -webkit-filter: initial;
+  filter: initial;
+}
+
+.icon-container .canvas-notification-icon {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  display: none;
+  margin: 0;
+  border: 1px solid white;
+  border-radius: 4px;
+  box-sizing: content-box;
+}
+
+.activity-icon-orange .icon-background {
+  background-color: #ed8b00;
+  border: 0;
+}
+
+#PingActivity .icon {
+  top: 18px;
+  left: 19px;
+  width: 18px;
+  background-position: 0 0;
+  background-size: contain;
+}
+
+.activity-icon-diamond .icon-container .icon-background {
+  left: 3px;
+  width: 42px;
+  height: 42px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.activity-header .activity-icon-diamond {
+  flex: 0 0 auto;
+  order: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+#PingActivity .icon-background {
+  width: 32px;
+  height: 32px;
+}
+
+.activity-header {
+  display: flex;
+  margin: 10px 5px;
+}
+
+.activity-header .header-icon {
+  flex: 0 0 auto;
+  order: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.activity-header .header-text {
+  flex: 1 1 auto;
+  order: 1;
+  top: 4px;
+  width: 100%;
+}
+
+.activity-header .header-text h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+
+.activity-header .header-text small {
+  display: block;
+  font-size: 13px;
+}
+
+
+.form-options {
+  margin-top: 35px;
+}
+
+.fuelux .selectlist .btn.dropdown-toggle {
+  min-height: 34px;
+}

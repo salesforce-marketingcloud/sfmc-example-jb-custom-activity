@@ -1,0 +1,36 @@
+{
+  "name": "jb-outbound-responder",
+  "version": "1.0.0",
+  "description": "JB2 Outbound Call Activity Test Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "grunt build",
+    "dev": "grunt dev && node server.js",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-express-server": "^0.5.4",
+    "livereload": "^0.8.2",
+    "nodemon": "1.19.1"
+  },
+  "dependencies": {
+    "bootstrap": "3.3.5",
+    "express": "4.16.3",
+    "fuelux": "3.17.2",
+    "jquery": "1.11.0",
+    "postmonger": "0.0.16",
+    "requirejs": "2.3.6"
+  }
+}
