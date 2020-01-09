@@ -44,8 +44,8 @@
       "execute": {
         "inArguments": [ ],
         "outArguments": [{
-          "foundSignupDate": {
-            "dataType": "Date",
+          "pong": {
+            "dataType": "Text",
             "direction": "out",
             "access": "visible"
           }

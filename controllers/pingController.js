@@ -1,6 +1,5 @@
 'use strict';
 
-
 exports.executeLifecycle = (req, res) => {
   return res.json({});
 }
@@ -28,12 +27,17 @@ exports.executePing = (req, res) => {
   const status = 200;
 
   var sendResponse = () => {
+    var responseObject = {
+      pong: pingInArgument
+    };
+
+    console.log('responseObject', responseObject);
     res
       .status(status)
-      .json({
-        pong: pingInArgument
-      });
+      .json(responseObject);
   }
+
+
 
   sendResponse();
 };
