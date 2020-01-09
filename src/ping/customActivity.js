@@ -59,7 +59,11 @@ define([
 
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
+    console.log('inArguments', inArguments);
+
     function getArg(inArguments, arg) {
+      console.log('getArg', inArguments, arg);
+
       $.each(inArguments, function(index, inArgument) {
         $.each(inArgument, function(key, val) {
           if (key === arg) {
