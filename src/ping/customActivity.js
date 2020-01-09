@@ -19,6 +19,8 @@ define([
   function onRender(e) {
 
     // JB will respond the first time 'ready' is called with 'initActivity'
+    // All Postmonger events
+    // https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/using-postmonger.htm
     connection.trigger('ready');
     connection.trigger('requestTokens');
     connection.trigger('requestEndpoints');

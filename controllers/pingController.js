@@ -8,6 +8,8 @@ exports.executePing = (req, res) => {
 
   var request = req.body;
 
+  console.log(" req.body", JSON.stringify(req.body));
+
   // Find the in argument
   var getInArgument = (k) => {
     if (request && request.inArguments) {
@@ -31,7 +33,7 @@ exports.executePing = (req, res) => {
       pong: pingInArgument
     };
 
-    console.log('responseObject', responseObject);
+    console.log('responseObject', JSON.stringify(responseObject));
     res
       .status(status)
       .json(responseObject);
