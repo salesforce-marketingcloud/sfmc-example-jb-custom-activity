@@ -59,17 +59,17 @@ define([
 
     var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
-    function getArg(arg) {
+    function getArg(inArguments, arg) {
       $.each(inArguments, function(index, inArgument) {
         $.each(inArgument, function(key, val) {
-          if (key === arg) {
-            return val;
+          if (key === 'ping') {
+            ping = val;
           }
         });
       });
     }
 
-    var ping = getArg('ping');
+    var ping = getArg(inArguments, 'ping');
 
     console.log('ping', ping);
 
