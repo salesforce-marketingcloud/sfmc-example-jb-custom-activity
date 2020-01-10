@@ -8,7 +8,7 @@
   "lang": {
     "en-US": {
       "name": "Example Ping!",
-      "description": "Ping JB Engine's heroku instance with an expected delay that the user specifies."
+      "description": "Ping service endpoint and reply back with a message you specify in the activities settings."
     }
   },
   "arguments": {

@@ -1,34 +1,47 @@
-# JB Outbound Call Activity Responder
+# SFMC Example Activity
+This example can be viewed at https://sfmc-example-custom-activity.herokuapp.com
 
 ReST service for responding to POST calls from Outbound Call Activity in JB v2.
-
-
-Features
- - dumb reponse from request
-  -
 
  TODO:
  - support requests encoded with JWT. parsing determined by content type in request
  - support for oauth server-server flow
  - configurable latency - random range of latency per call in milliseconds
 
-
-## Running the service
+----
+### Debugging
 ```
 npm install
+grunt dev
+```
+Navigate to http://localhost:3000
 
+
+### Running the service
+```
+npm install
 npm start
 ```
+----
+## Examples
 
-## Endpoints
 
-### /signups
+### /ping
+Simple example of
+
+#### Features
+ - dumb reponse from request
+  -
+
   - 50ms delay
   - 1 in 10,000 chance there will be an http 500 error returned
   - 1 in 10 chance a response code of 400
   - 90% chance HTTP 200 ok result: { "branch": "branch "}
 
-### /ping
+### /customsplit
+
+
+
 
 ### Request Format Json
 ```

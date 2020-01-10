@@ -8,58 +8,34 @@ define([
   var connection = new Postmonger.Session();
   var payload = {};
 
-  var exampleInitializeData = {
-    arguments: {
-      executionMode: "{{Context.ExecutionMode}}",
-      definitionId: "{{Context.DefinitionId}}",
-      activityId: "{{Activity.Id}}",
-      contactKey: "{{Context.ContactKey}}",
-      execute: {
-        inArguments: [{
-          ping: {
-            text: "Dong!",
-            value: "dong"
-          }
-        }],
-        outArguments: []
-      },
-      startActivityKey: "{{Context.StartActivityKey}}",
-      definitionInstanceId: "{{Context.DefinitionInstanceId}}",
-      requestObjectId: "{{Context.RequestObjectId}}"
-    }
-  };
-
   $(window).ready(onRender);
 
-  // All Postmonger events that the Custom Activity recieve:
-  // https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/using-postmonger.htm
   connection.on('initActivity', initialize);
+  connection.on('requestedTokens', onGetTokens);
+  connection.on('requestedEndpoints', onGetEndpoints);
+
   connection.on('clickedNext', save);
 
-
-
-  /**
-   * Simple onReady This function will alert the
-   * @param  {[type]} e [description]
-   * @return {[type]}   [description]
-   */
   function onRender(e) {
+
+    // JB will respond the first time 'ready' is called with 'initActivity'
+    // All Postmonger events
+    // https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/using-postmonger.htm
     connection.trigger('ready');
+    connection.trigger('requestTokens');
+    connection.trigger('requestEndpoints');
 
     // To Test Locally uncomment this line
-    //initialize(exampleInitializeData);
+    //initialize();
   }
 
   function updateNextButton(force) {
-    // we can update the botton to say 'done' once the
-    // user has filled out all the controls properly.
-    var isDone = (force || getMessage());
-    console.log('Updated Button to', isDone ? 'done' : 'next')
-
+    // we can enable the button for 'done' by calling the
+    // connection to alert it to update the button.
     connection.trigger('updateButton', {
       button: 'next',
-      text: isDone ? 'done' : 'next',
-      enabled: Boolean(isDone)
+      text: (force || getMessage()) ? 'done' : 'next',
+      enabled: Boolean((force || getMessage()))
     });
   }
 
@@ -85,7 +61,7 @@ define([
     function getArg(inArguments, arg) {
       var toReturn;
       $.each(inArguments, function(index, inArgument) {
-        if (!toReturn) {
+        if(!toReturn) {
           $.each(inArgument, function(key, val) {
             if (key === arg) {
               toReturn = val;
@@ -101,8 +77,8 @@ define([
     if (ping && ping.value) {
       // If there is a message, skip to the summary step
       $('#ping').combobox('selectByValue', ping.value);
-    } else if (ping && ping.text) {
-      $('#ping :text').val(ping.text);
+    } else if(ping && ping.text) {
+        $('#ping :text').val(ping.text);
     }
 
     // update the next button upon load.
@@ -113,6 +89,20 @@ define([
     $('#ping :text').on('keypress', function() {
       updateNextButton($('#ping :text').val() !== "");
     });
+  }
+
+  // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
+  function onGetTokens(tokens) {
+    console.log('------ tokens -------');
+    console.log(JSON.stringify(tokens));
+    console.log('---------------------');
+  }
+
+  // Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
+  function onGetEndpoints(endpoints) {
+    console.log('------ endpoints -------');
+    console.log(JSON.stringify(endpoints));
+    console.log('------------------------');
   }
 
   function save() {
@@ -135,7 +125,7 @@ define([
     // We will only return the message if they have typed in a message or selected
     // it from the list.
     var selection = $('#ping').combobox('selectedItem');
-    if (selection.text !== "") {
+    if(selection.text !== "") {
       return selection;
     }
   }

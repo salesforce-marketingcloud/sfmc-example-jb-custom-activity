@@ -4,11 +4,7 @@ module.exports = (app, express) => {
 	var router = express.Router();
 
 	var pingController = require('./controllers/pingController');
-
-	// home page route (http://localhost:8080)
-	router.get('/', function(req, res) {
-	    res.send("these aren't the droids you're looking for!");
-	});
+	var customSplitController = require('./controllers/customSplitController');
 
 	/**
 	 * Controller: Ping Controller
@@ -17,7 +13,14 @@ module.exports = (app, express) => {
 	router.post('/ping/publish', pingController.executeLifecycle);
 	router.post('/ping/validate', pingController.executeLifecycle);
 	router.post('/ping/stop', pingController.executeLifecycle);
-	router.post('/ping/execute', pingController.executePing);
+	router.post('/ping/execute', pingController.execute);
+
+	// custom split server side information
+	router.post('/customsplit/save', customSplitController.executeLifecycle);
+	router.post('/customsplit/publish', customSplitController.executeLifecycle);
+	router.post('/customsplit/validate', customSplitController.executeLifecycle);
+	router.post('/customsplit/stop', customSplitController.executeLifecycle);
+	router.post('/customsplit/execute', customSplitController.execute);
 
 	// apply the routes to our application
 	app.use('/', router);

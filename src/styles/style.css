@@ -1,3 +1,42 @@
+@font-face {
+    font-family: 'Salesforce Sans';
+    src: url(/static/fonts/SalesforceSans-Light.woff2) format("woff2"),url(/static/fonts/SalesforceSans-Light.woff) format("woff");
+    font-weight: 300
+}
+
+@font-face {
+    font-family: 'Salesforce Sans';
+    src: url(/static/fonts/SalesforceSans-LightItalic.woff2) format("woff2"),url(/static/fonts/SalesforceSans-LightItalic.woff) format("woff");
+    font-style: italic;
+    font-weight: 300
+}
+
+@font-face {
+    font-family: 'Salesforce Sans';
+    src: url(/static/fonts/SalesforceSans-Regular.woff2) format("woff2"),url(/static/fonts/SalesforceSans-Regular.woff) format("woff");
+    font-weight: 400
+}
+
+@font-face {
+    font-family: 'Salesforce Sans';
+    src: url(/static/fonts/SalesforceSans-Italic.woff2) format("woff2"),url(/static/fonts/SalesforceSans-Italic.woff) format("woff");
+    font-style: italic;
+    font-weight: 400
+}
+
+@font-face {
+    font-family: 'Salesforce Sans';
+    src: url(/static/fonts/SalesforceSans-Bold.woff2) format("woff2"),url(/static/fonts/SalesforceSans-Bold.woff) format("woff");
+    font-weight: 700
+}
+
+@font-face {
+    font-family: 'Salesforce Sans';
+    src: url(/static/fonts/SalesforceSans-BoldItalic.woff2) format("woff2"),url(/static/fonts/SalesforceSans-BoldItalic.woff) format("woff");
+    font-style: italic;
+    font-weight: 700
+}
+
 body {
   font-family: "Salesforce Sans", Arial, sans-serif;
 }
@@ -44,8 +83,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 24px;
-  height: 24px;
+  width: 80%;
+  height: 80%;
   text-align: center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -83,10 +122,18 @@ body {
   background-size: contain;
 }
 
+
+.activity-icon-xl {
+  padding: 50px;
+}
+
+.activity-icon-xl .icon-container {
+  height: 200px;
+  width: 200px;
+}
+
 .activity-icon-diamond .icon-container .icon-background {
   left: 3px;
-  width: 42px;
-  height: 42px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -97,6 +144,7 @@ body {
   -moz-background-clip: padding;
   background-clip: padding-box;
 }
+
 
 .activity-header .activity-icon-diamond {
   flex: 0 0 auto;
@@ -122,6 +170,7 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 8px;
+  margin-right: 20px;
 }
 
 .activity-header .header-text {

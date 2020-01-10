@@ -13,6 +13,17 @@ module.exports = function(grunt) {
     'node_modules/fuelux/dist/css/fuelux.min.css'
   ];
 
+const activityExamples = [
+  'ping/**',
+  'customsplit/**'
+]
+
+const fonts = [
+  'src/fonts/*',
+  'node_modules/bootstrap/fonts/*'
+];
+
+
   const appCSS = [
     'src/styles/**'
   ];
@@ -76,15 +87,25 @@ module.exports = function(grunt) {
             flatten: true,
             filter: 'isFile'
           },
+          {
+            expand: true,
+            src: fonts,
+            dest: 'public/static/fonts/',
+            flatten: true,
+            filter: 'isFile'
+          },
         ]
       },
       app: {
         files: [{
           expand: true,
           cwd: 'src',
-          src: [
-            'ping/**',
-          ],
+          src: activityExamples,
+          dest: 'public/',
+        },{
+          expand: true,
+          cwd: 'src',
+          src: ['index.html'],
           dest: 'public/',
         },{
           expand: true,

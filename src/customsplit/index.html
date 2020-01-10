@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Ping Rest Activity</title>
+
+  <!-- To learn more about FuelUX visit - https://getfuelux.com/ -->
+  <link href="/static/css/vendor.css" rel="stylesheet">
+  <link href="/static/css/app.css" rel="stylesheet">
+
+  <script>
+    if(location.host && location.host.startsWith('localhost')) {
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+      ':35729/livereload.js?snipver=1"></' + 'script>')
+    }
+  </script>
+
+  <!--
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/fuelux.min.css" rel="stylesheet">
+  -->
+  <script type="text/javascript" src="/static/js/vendor.js"></script>
+  <!--
+  <script type="text/javascript" src="/static/js/require.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/static/js/fuelux.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    (function() {
+      var config = {
+        baseUrl: ''
+      };
+
+      var dependencies = [
+        'customActivity'
+      ];
+
+      require(config, dependencies);
+    })();
+  </script>
+
+  <!--Custom Styles -->
+  <style type="text/css">
+
+
+  </style>
+
+</head>
+
+<body class="fuelux" id="PingActivity">
+
+  <div class="container-fluid">
+    <div class="row activity-header">
+      <div class="header-icon">
+        <div class="activity-icon-diamond activity-icon-orange">
+          <div class="icon-container">
+            <!-- Diamond -->
+            <div class="icon-background">
+            </div>
+            <div class="icon">
+              <img src="/static/images/megaphone.svg">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-text">
+        <h3>
+          Ping Service
+          <small>Ping the server then have the server wait a specified period of time.</small>
+        </h3>
+      </div>
+    </div>
+
+    <div class="row form-options">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label class="col-xs-2 control-label">Delay</label>
+          <div class="col-xs-10">
+
+
+            <div class="input-group input-append dropdown combobox" data-initialize="combobox" id="ping" style="width: 200px;">
+              <input type="text" class="form-control">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li data-value="ping"><a href="#">Ping!</a></li>
+                  <li data-value="pong"><a href="#">Pong!</a></li>
+                  <li data-value="ding"><a href="#">Ding!</a></li>
+                  <li data-value="dong"><a href="#">Dong!</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
