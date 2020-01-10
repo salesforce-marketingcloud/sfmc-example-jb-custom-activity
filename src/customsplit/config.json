@@ -39,33 +39,47 @@
       "fullscreen": false
     }
   },
-  "outcomes": [
-    {
-        "arguments": {
-            "branchResult": "buy_item",
-            "some argument": "passed from config.json for buy_item"
-        }
+  "outcomes": [{
+      "arguments": {
+        "branchResult": "no_action",
+        "some argument": "passed from config.json for hold_item"
+      },
+      "metaData": {
+        "label": "No Activity"
+      }
     },
     {
-        "arguments": {
-            "branchResult": "sell_item",
-            "some argument": "passed from config.json for sell_item"
-        }
+      "arguments": {
+        "branchResult": "viewed_item",
+        "some argument": "passed from config.json for hold_item"
+      },
+      "metaData": {
+        "label": "Viewed Item"
+      }
     },
     {
-        "arguments": {
-            "branchResult": "hold_item",
-            "some argument": "passed from config.json for hold_item"
-        },
-        "metaData": {
-            "label": "MyCustomLabel"
-        }
+      "arguments": {
+        "branchResult": "abandoned_cart",
+        "some argument": "passed from config.json for sell_item"
+      },
+      "metaData": {
+        "label": "Abandoned Cart"
+      }
+    },
+    {
+      "arguments": {
+        "branchResult": "purchased_item",
+        "some argument": "passed from config.json for buy_item"
+      },
+      "metaData": {
+        "label": "Purchased Item"
+      }
     }
-],
+  ],
   "schema": {
     "arguments": {
       "execute": {
-        "inArguments": [ ],
+        "inArguments": [],
         "outArguments": [{
           "pong": {
             "dataType": "Text",
