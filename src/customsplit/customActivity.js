@@ -47,7 +47,7 @@ define([
     }
 
 
-    if(!doneOnce) {
+    if (!doneOnce) {
       // add another outcome.
       payload.outcomes.push({
         "arguments": {
@@ -56,8 +56,9 @@ define([
         },
         "metaData": {
           "label": "additional_activity_thing"
-        });
-      }
+        }
+      });
+    }
 
     console.log('-------- Initialize --------');
     console.log('data', JSON.stringify(data));
@@ -75,7 +76,7 @@ define([
     function getArg(inArguments, arg) {
       var toReturn;
       $.each(inArguments, function(index, inArgument) {
-        if(!toReturn) {
+        if (!toReturn) {
           $.each(inArgument, function(key, val) {
             if (key === arg) {
               toReturn = val;
@@ -91,8 +92,8 @@ define([
     if (ping && ping.value) {
       // If there is a message, skip to the summary step
       $('#ping').combobox('selectByValue', ping.value);
-    } else if(ping && ping.text) {
-        $('#ping :text').val(ping.text);
+    } else if (ping && ping.text) {
+      $('#ping :text').val(ping.text);
     }
 
     // update the next button upon load.
@@ -139,7 +140,7 @@ define([
     // We will only return the message if they have typed in a message or selected
     // it from the list.
     var selection = $('#ping').combobox('selectedItem');
-    if(selection.text !== "") {
+    if (selection.text !== "") {
       return selection;
     }
   }
