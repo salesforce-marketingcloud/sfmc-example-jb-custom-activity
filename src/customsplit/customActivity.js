@@ -59,6 +59,11 @@ define([
         }
       });
     }
+    connection.trigger('updateActivity', payload);
+    connection.trigger('updateActivity', payload);
+    connection.trigger('updateActivity', payload);
+    connection.trigger('updateActivity', payload);
+
 
     console.log('-------- Initialize --------');
     console.log('data', JSON.stringify(data));
@@ -132,8 +137,6 @@ define([
     }];
 
     payload['metaData'].isConfigured = true;
-
-    connection.trigger('updateActivity', payload);
   }
 
   function getMessage() {
