@@ -7,6 +7,7 @@ define([
 
   var connection = new Postmonger.Session();
   var payload = {};
+  var doneOnce = false;
 
   $(window).ready(onRender);
 
@@ -44,6 +45,20 @@ define([
     if (data) {
       payload = data;
     }
+
+
+    if(!doneOnce) {
+      // add another outcome.
+      payload.outcomes.push({
+        "arguments": {
+          "branchResult": "no_action",
+          "some argument": "passed from config.json for hold_item"
+        },
+        "metaData": {
+          "label": "No Activity"
+        });
+        connection.trigger('updateActivity', payload);
+      }
 
     console.log('-------- Initialize --------');
     console.log('data', JSON.stringify(data));
