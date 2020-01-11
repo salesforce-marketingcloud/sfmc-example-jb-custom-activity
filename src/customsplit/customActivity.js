@@ -51,13 +51,12 @@ define([
       // add another outcome.
       payload.outcomes.push({
         "arguments": {
-          "branchResult": "no_action",
+          "branchResult": "additional_activity_thing",
           "some argument": "passed from config.json for hold_item"
         },
         "metaData": {
-          "label": "No Activity"
+          "label": "additional_activity_thing"
         });
-        connection.trigger('updateActivity', payload);
       }
 
     console.log('-------- Initialize --------');
