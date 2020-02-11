@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="#">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SFMC - Custom Activities</title>
+</head>
+
+
+<body class="fuelux">
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Custom Activity</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Begin page content -->
+  <div class="container">
+    <div class="page-header">
+      <h1>
+        Salesforce Marketing Cloud - Example Custom Activity
+        <small style="display: block;">sfmc-example-custom-activity</small>
+      </h1>
+    </div>
+    <p class="lead">
+      Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+      A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.
+    </p>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-5">
+        <div class="activity-icon-diamond activity-icon-orange activity-icon-xl">
+          <div class="icon-container icon-container-xl">
+            <!-- Diamond -->
+            <div class="icon-background">
+            </div>
+            <div class="icon">
+              <img src="/img/megaphone.svg">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <h2 class="featurette-heading">
+          <a href="./ping/">Example Ping! <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+
+          <small><span class="label label-primary">Simple</span></small>
+        </h2>
+        <p class="lead">
+          This is the most simple example for Journey Builder Custom Activity. This activity sends a message to the service endpoint and replies back with a message you specify in the activities settings.
+        </p>
+        <p>
+          Add: <code class="replace-path">{{domain+path}}/ping/</code> to Marketing Cloud -> Setup -> Platform Tools -> Apps > Installed Packages
+        </p>
+        <p class="code-location">
+          The Source Code for UI is located at <code>src/modules/ping</code> and the source code for the API is located at <code>controllers/pingController.js</code>.
+        </p>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">
+          <a href="./customsplit/">Custom Split! <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+          <small><span class="label label-primary">Decision Split</span></small>
+        </h2>
+        <p class="lead">
+          This is the most simple example for Journey Builder Custom Activity. This activity sends a message to the service endpoint and replies back with a message you specify in the activities settings.
+        </p>
+        <p class="code-location">
+          The Source Code for UI is located at <code>src/modules/ping</code> and the source code for the API is located at <code>controllers/pingController.js</code>.
+        </p>
+      </div>
+      <div class="col-md-5">
+        <div class="activity-icon-diamond activity-icon-orange activity-icon-xl">
+          <div class="icon-container icon-container-xl">
+            <!-- Diamond -->
+            <div class="icon-background">
+            </div>
+            <div class="icon">
+              <img src="/img/customsplit.svg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">
+        <span class="footer-copyright">
+          © Copyright 2000-2019 salesforce.com, inc. All rights reserved. Various trademarks held by their respective owners.<br>
+          Salesforce.com, inc. The Landmark @ One Market, Suite 300, San Francisco, CA 94105, United States
+        </span>
+      </p>
+    </div>
+  </footer>
+
+</html>

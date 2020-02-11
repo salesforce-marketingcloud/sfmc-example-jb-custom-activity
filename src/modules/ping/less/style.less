@@ -1,0 +1,136 @@
+@import '../../../less/base.less';
+@import '../../../less/icons.less';
+//@import '../../../../node_modules/@salesforce-ux/design-system/design-tokens/dist/force-base.less';
+//@import '../../../../node_modules/@salesforce-ux/design-system/design-tokens/dist/components.less';
+
+
+.container-fluid {
+  padding-top: 5px;
+}
+
+.activity-icon-orange .icon-background {
+  background-color: #ed8b00;
+  border: 0;
+}
+
+#PingActivity .icon {
+  top: 16px;
+  left: 19px;
+  width: 24px;
+  height: 24px;
+  background-position: 0 0;
+  background-size: contain;
+}
+
+.activity-icon-xl {
+  padding: 50px;
+}
+
+.activity-icon-xl .icon-container {
+  height: 200px;
+  width: 200px;
+}
+
+.activity-icon-diamond .icon-container .icon-background {
+  left: 3px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+
+.slds-icon_container {
+
+
+
+  // Activity Icon Overrrides
+  &.slds-icon-activity {
+
+    width: 32px;
+    height: 32px;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+
+    &.slds-icon-orange {
+      background-color: #ed8b00;
+    }
+
+
+    img {
+      width: 32px;
+      height: 32px;
+      -webkit-transform: rotate(45deg) scale(.75);
+      -moz-transform: rotate(45deg) scale(.75);
+      transform: rotate(45deg) scale(.75);
+      filter: grayscale(100) brightness(100);
+    }
+
+  }
+
+
+}
+
+.activity-header .activity-icon-diamond {
+  flex: 0 0 auto;
+  order: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+#PingActivity .icon-background {
+  width: 32px;
+  height: 32px;
+}
+
+.activity-header {
+  display: flex;
+  margin: 10px 5px;
+}
+
+.activity-header .header-icon {
+  flex: 0 0 auto;
+  order: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.activity-header .header-text {
+  flex: 1 1 auto;
+  order: 1;
+  top: 4px;
+  width: 100%;
+}
+
+.activity-header .header-text h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+
+.activity-header .header-text small {
+  display: block;
+  font-size: 13px;
+}
+
+
+.form-options {
+  margin-top: 35px;
+}
+
+.fuelux .selectlist .btn.dropdown-toggle {
+  min-height: 34px;
+}
