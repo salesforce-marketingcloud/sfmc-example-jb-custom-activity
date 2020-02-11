@@ -1,11 +1,12 @@
 {
-  "name": "jb-outbound-responder",
-  "version": "1.0.0",
-  "description": "JB2 Outbound Call Activity Test Service",
+  "name": "sfmc-example-custom-activity",
+  "version": "0.0.1",
+  "description": "Salesforce Marketing Cloud Custom Activity",
   "scripts": {
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
-    "start": "echo STARTING!!! && node ./dist/server.js"
+    "build": "npm run-script buildProd",
+    "start": "node ./dist/server.js"
   },
   "author": "",
   "license": "ISC",
