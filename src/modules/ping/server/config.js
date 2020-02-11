@@ -45,7 +45,6 @@ const config = (req) => {
       },
       */
       configInspector: {
-        emptyIframe: true,
         size: "scm-lg"
       }
     },
