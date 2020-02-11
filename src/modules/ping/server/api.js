@@ -50,8 +50,9 @@ export default {
       method: 'GET',
       resolve: (req, res) => {
         // Return the JSON configuration
+        console.log('req', req.headers['host']);
         res.status(200)
-          .json(config);
+          .json(config(req));
       }
     },
     {
