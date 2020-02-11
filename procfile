@@ -1,0 +1,1 @@
+web: npm i && npm run-script buildProd && node index.js
