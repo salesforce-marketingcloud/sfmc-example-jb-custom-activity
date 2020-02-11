@@ -1,1 +1,0 @@
-web: npm i && npm run-script buildProd && node ./dist/server.js
