@@ -48,22 +48,22 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
           }
-        ]
+        }]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [{
-          loader: 'url-loader',
+          loader: 'file-loader',
           options: {
+            name: '[name].[ext]',
             esModule: false,
+            outputPath: 'img/'
           }
         }]
       }

@@ -2,7 +2,8 @@ const config = (req) => {
   return {
     workflowApiVersion: '1.1',
     metaData: {
-      icon: '/static/img/megaphone.svg',
+      // the location of our icon file
+      icon: `https://${req.headers['host']}/img/megaphone.svg`,
       category: 'customer'
     },
     type: 'REST',
