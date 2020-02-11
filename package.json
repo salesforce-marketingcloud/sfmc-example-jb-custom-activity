@@ -1,15 +1,15 @@
 {
   "name": "sfmc-example-custom-activity",
   "version": "0.0.1",
-  "description": "Salesforce Marketing Cloud Custom Activity",
+  "description": "Salesforce Marketing Cloud - Example Custom Activity",
   "scripts": {
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "build": "npm run-script buildProd",
+    "heroku-prebuild": "npm install --dev",
     "start": "node ./dist/server.js"
   },
-  "author": "",
-  "license": "ISC",
+  "main": "index.js",
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
