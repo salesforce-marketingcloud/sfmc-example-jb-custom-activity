@@ -6,7 +6,7 @@
     "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "build": "npm run-script buildProd",
-    "heroku-prebuild": "npm install --dev",
+    "heroku-prebuild": "npm install --dev && echo ran heroku-prebuild",
     "start": "node ./dist/server.js"
   },
   "main": "index.js",
