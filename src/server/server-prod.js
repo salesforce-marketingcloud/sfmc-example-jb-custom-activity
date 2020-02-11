@@ -26,11 +26,6 @@ const app = express(),
 app.use('/slds', serveStatic(path.join(__dirname, '../node_modules/@salesforce-ux/design-system/assets')));
 app.use('/img', serveStatic(path.join(__dirname, '../src/img')));
 
-app.use(express.static(DIST_DIR))
-app.get('*', (req, res) => {
-    res.sendFile(HTML_FILE)
-});
-
 console.log("---------------------------------------------------------");
 console.log("----------------- REGISTERING Modules --------------------");
 console.log("---------------------------------------------------------");
@@ -59,6 +54,11 @@ modules.forEach((module) => {
 console.log("---------------------------------------------------------");
 
 app.use('/', router);
+
+app.use(express.static(DIST_DIR))
+app.get('*', (req, res) => {
+    res.sendFile(HTML_FILE)
+});
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {

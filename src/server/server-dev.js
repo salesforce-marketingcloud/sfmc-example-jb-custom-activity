@@ -31,19 +31,6 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-/*
-app.get('*', (req, res, next) => {
-  compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {
-    if (err) {
-      return next(err);
-    }
-    res.set('content-type', 'text/html');
-    res.send(result);
-    res.end();
-  });
-});
-*/
-
 // expose slds assets
 app.use('/slds', serveStatic(path.join(__dirname, '../node_modules/@salesforce-ux/design-system/assets')));
 app.use('/img', serveStatic(path.join(__dirname, '../src/img')));
