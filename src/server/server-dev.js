@@ -33,6 +33,7 @@ app.use(webpackHotMiddleware(compiler));
 
 // expose slds assets
 app.use('/slds', serveStatic(path.join(__dirname, '../node_modules/@salesforce-ux/design-system/assets')));
+app.use('/assets', serveStatic(path.join(__dirname, '../node_modules/@salesforce-ux/design-system/assets')));
 app.use('/img', serveStatic(path.join(__dirname, '../src/img')));
 
 console.log("---------------------------------------------------------");
@@ -47,7 +48,7 @@ modules.forEach((module) => {
 
     let path = `/modules/${m.name}/${r.path}`.replace('//', '/').replace('//', '/');
 
-    switch(r.method) {
+    switch (r.method) {
       case 'POST':
         app.post(path, r.resolve);
         console.log("-- ", r.method, path);

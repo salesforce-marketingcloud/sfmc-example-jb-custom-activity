@@ -4,29 +4,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-
   <title>Ping Rest Activity</title>
-
-  <!--Custom Styles -->
-  <style type="text/css">
-
-
-  </style>
-
 </head>
 
 <body id="PingActivity">
 
-
-
+  <!-- Header -->
   <div class="slds-page-header">
     <div class="slds-page-header__row">
       <div class="slds-page-header__col-title">
         <div class="slds-media">
           <div class="slds-media__figure">
-            <span class="slds-icon_container slds-icon-activity slds-icon-orange" title="opportunity">
-              <img src="../img/megaphone.svg">
+
+            <span class="slds-icon_container slds-icon-standard-activity" title="Ping Activity">
+              <svg class="slds-icon slds-icon slds-icon-text-white" aria-hidden="true">
+                <use xlink:href="../img/megaphone.svg#icon"></use>
+              </svg>
+              <span class="slds-assistive-text">ping activity icon, a megaphone</span>
             </span>
+
           </div>
           <div class="slds-media__body">
             <div class="slds-page-header__name">
@@ -36,32 +32,30 @@
                 </h1>
               </div>
             </div>
-            <p class="slds-page-header__name-meta">Ping the server then have the server wait a specified period of time.</p>
+            <p class="slds-page-header__name-meta">Ping the server with a message get a response message back.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-
-  <div class="slds-form-element">
-    <label class="slds-form-element__label" for="ping">Select Label</label>
-    <div class="slds-form-element__control">
-      <div class="slds-select_container">
-        <select class="slds-select" id="ping">
-          <option value="">Please select</option>
-          <option value="ping">Ping</option>
-          <option value="pong">Pong</option>
-          <option value="ding">Ding</option>
-          <option value="dong">Dong</option>
-        </select>
+  <!-- Form -->
+  <div class="slds-form">
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="ping">Select Label</label>
+      <div class="slds-form-element__control">
+        <div class="slds-select_container">
+          <select class="slds-select" id="ping">
+            <option value="">Please select</option>
+            <option value="ping">Ping</option>
+            <option value="ding">Ding</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
 
 
-
-  </div>
 
 
 </body>

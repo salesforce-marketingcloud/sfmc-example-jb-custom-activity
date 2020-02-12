@@ -1,31 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="#">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="#">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>SFMC - Custom Activities</title>
+  <title>SFMC - Custom Activities</title>
 </head>
 
 
-<body class="fuelux">
+<body>
 
-  <!-- Fixed navbar -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Custom Activity</a>
+  <header class="slds-global-header_container">
+    <div class="slds-global-header slds-grid slds-grid_align-spread">
+      <div class="slds-global-header__item">
+        <div class="slds-global-header__logo logo-sf"></div>
+      </div>
+      <div class="slds-global-header__item">
+      </div>
+      <div class="slds-global-header__item">
+        <ul class="slds-global-actions">
+          <li class="slds-global-actions__item">
+            <div class="slds-dropdown-trigger slds-dropdown-trigger_click">
+              <a href="https://developer.salesforce.com/docs/atlas.en-us.mc-app-development.meta/mc-app-development/creating-activities.htm"
+                 target="_blank"
+                 class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-actions__help slds-global-actions__item-action" aria-haspopup="true" title="Help and Training">
+                <svg class="slds-button__icon slds-global-header__icon" aria-hidden="true">
+                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#question"></use>
+                </svg>
+                <span class="slds-assistive-text">Goto Online Documentation</span>
+              </a>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Begin page content -->
   <div class="container">
+    <div class="slds-brand-band slds-brand-band_cover slds-brand-band_medium slds-template_profile">
+      <div class="hero-header text-muted">
+        <h1>
+          Salesforce Marketing Cloud - Example Custom Activity
+          <small>sfmc-example-custom-activity</small>
+        </h1>
+      </div>
+
+
+
+      <div class="slds-grid slds-wrap slds-gutters slds-container_x-large slds-container_center ">
+
+
+        <!-- Ping Activyt Card -->
+        <main class="slds-col slds-size_1-of-2">
+
+          <article class="slds-card slds-card-activity">
+            <div class="slds-card__header slds-grid">
+              <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                  <span class="slds-icon_container slds-icon-standard-activity" title="Ping Activity">
+                    <svg class="slds-icon slds-icon_large slds-icon-text-white" aria-hidden="true">
+                      <use xlink:href="../modules/ping/img/megaphone.svg#icon"></use>
+                    </svg>
+                    <span class="slds-assistive-text">ping activity icon, a megaphone</span>
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  <h2 class="slds-card__header-title">
+                    <a href="./modules/ping" class="slds-card__header-link slds-truncate" title="Accounts">
+                      <span>Ping Activity Example</span>
+                    </a>
+                  </h2>
+                </div>
+              </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+              This is the most simple example for Journey Builder Custom Activity. This activity sends a message to the
+              service endpoint and replies back with a message you specify in the activities settings.
+            </div>
+            <footer class="slds-card__footer">
+              Footer Information
+            </footer>
+          </article>
+        </main>
+
+
+        <aside class="slds-col slds-size_1-of-2">
+          <article class="slds-card slds-card-activity">
+            <div class="slds-card__header slds-grid">
+              <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                  <span class="slds-icon_container slds-icon-standard-activity" title="account">
+                    <svg class="slds-icon slds-icon_large slds-icon-text-white" aria-hidden="true">
+                      <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#decision"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Custom Split</span>
+                  </span>
+                </div>
+
+                <div class="slds-media__body">
+                  <h2 class="slds-card__header-title">
+                    <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Accounts">
+                      <span>Custom Split</span>
+                    </a>
+                  </h2>
+                </div>
+              </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">Card Body</div>
+            <footer class="slds-card__footer">Footer</footer>
+          </article>
+        </aside>
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <!--
     <div class="page-header">
       <h1>
         Salesforce Marketing Cloud - Example Custom Activity
@@ -44,7 +142,6 @@
       <div class="col-md-5">
         <div class="activity-icon-diamond activity-icon-orange activity-icon-xl">
           <div class="icon-container icon-container-xl">
-            <!-- Diamond -->
             <div class="icon-background">
             </div>
             <div class="icon">
@@ -60,7 +157,7 @@
           <small><span class="label label-primary">Simple</span></small>
         </h2>
         <p class="lead">
-          This is the most simple example for Journey Builder Custom Activity. This activity sends a message to the service endpoint and replies back with a message you specify in the activities settings.
+
         </p>
         <p>
           Add: <code class="replace-path">{{domain+path}}/ping/</code> to Marketing Cloud -> Setup -> Platform Tools -> Apps > Installed Packages
@@ -90,7 +187,6 @@
       <div class="col-md-5">
         <div class="activity-icon-diamond activity-icon-orange activity-icon-xl">
           <div class="icon-container icon-container-xl">
-            <!-- Diamond -->
             <div class="icon-background">
             </div>
             <div class="icon">
@@ -102,15 +198,14 @@
     </div>
 
   </div>
+-->
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <p class="text-muted">
-        <span class="footer-copyright">
-          © Copyright 2000-2019 salesforce.com, inc. All rights reserved. Various trademarks held by their respective owners.<br>
-          Salesforce.com, inc. The Landmark @ One Market, Suite 300, San Francisco, CA 94105, United States
-        </span>
+    <div class="slds-grid slds-wrap slds-gutters slds-container_x-large slds-container_center">
+      <p class="slds-text-body_small">
+        © Copyright 2000-2019 salesforce.com, inc. All rights reserved. Various trademarks held by their respective owners.<br>
+        Salesforce.com, inc. The Landmark @ One Market, Suite 300, San Francisco, CA 94105, United States
       </p>
     </div>
   </footer>

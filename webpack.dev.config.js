@@ -3,12 +3,6 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-
-const activities = {
-  ping: {},
-  customSplit: {}
-};
-
 module.exports = {
   mode: 'development',
   entry: {
@@ -39,12 +33,28 @@ module.exports = {
         test: /\.html$/,
         use: [{
           loader: "html-loader",
+          options: {
+            attrs: ['img:src','link:href','image:xlink:href','use:xlink:href']
+          }
           //options: { minimize: true }
         }]
       },
       {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
         test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        use: [{
+            loader: 'style-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+          {
+            loader: 'less-loader', // compiles Less to CSS
+          },
+        ],
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
@@ -85,7 +95,8 @@ module.exports = {
       excludeChunks: ['server']
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()

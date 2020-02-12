@@ -1,4 +1,21 @@
+@activity-orange = #ed8b00;
 
+/* Modifications to SLDS Icons */
+.slds-icon-standard-activity {
+  background-color: #ed8b00;
+  transform: rotate(45deg);
+  /* Rotate it back */
+  .slds-icon {
+    transform: rotate(-45deg) scale(0.75);
+  }
+}
+/* Make an Icon White */
+.slds-icon-text-white {
+  fill: #FFF;
+  -webkit-filter: grayscale(100) brightness(100);
+  filter: grayscale(100) brightness(100);
+}
+/* OLD */
 .icon-container {
   position: relative;
   left: 50%;

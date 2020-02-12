@@ -49,7 +49,7 @@ function onRender(e) {
   connection.trigger('ready');
 
   // To Test Locally uncomment this line
-  //initialize(exampleInitializeData);
+  initialize(exampleInitializeData);
 }
 
 function updateNextButton(force) {
@@ -102,7 +102,7 @@ function initialize(data) {
 
   if (ping && ping.value) {
     // If there is a message, skip to the summary step
-    $('#ping').combobox('selectByValue', ping.value);
+    $('#ping').val(ping.value);
   } else if (ping && ping.text) {
     $('#ping :text').val(ping.text);
   }
@@ -111,10 +111,7 @@ function initialize(data) {
   updateNextButton();
 
   // update the next button should the inputs change.
-  $('#ping').on('changed.fu.combobox', updateNextButton);
-  $('#ping :text').on('keypress', function() {
-    updateNextButton($('#ping :text').val() !== "");
-  });
+  $('#ping').change(updateNextButton);
 }
 
 function save() {
@@ -136,8 +133,5 @@ function save() {
 function getMessage() {
   // We will only return the message if they have typed in a message or selected
   // it from the list.
-  var selection = $('#ping').combobox('selectedItem');
-  if (selection.text !== "") {
-    return selection;
-  }
+  return $('#ping').val();
 }

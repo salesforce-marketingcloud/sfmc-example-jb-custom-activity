@@ -6,11 +6,6 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 
-const activities = {
-  ping: {},
-  customSplit: {}
-};
-
 module.exports = {
   mode: 'development',
   entry: {
@@ -49,7 +44,10 @@ module.exports = {
         test: /\.html$/,
         use: [{
           loader: "html-loader",
-          options: { minimize: true }
+          options: {
+            attrs: ['img:src','link:href','image:xlink:href','use:xlink:href'],
+            minimize: true
+          }
         }]
       },
       {
