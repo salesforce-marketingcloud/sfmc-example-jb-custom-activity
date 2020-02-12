@@ -22,7 +22,7 @@ var exampleInitializeData = {
       inArguments: [{
         ping: {
           text: "Dong!",
-          value: "dong"
+          value: "ding"
         }
       }],
       outArguments: []
@@ -49,7 +49,7 @@ function onRender(e) {
   connection.trigger('ready');
 
   // To Test Locally uncomment this line
-  initialize(exampleInitializeData);
+  // initialize(exampleInitializeData);
 }
 
 function updateNextButton(force) {
@@ -71,10 +71,6 @@ function initialize(data) {
     payload = data;
   }
 
-  console.log('-------- Initialize --------');
-  console.log('data', JSON.stringify(data));
-  console.log('----------------------------');
-
   var hasInArguments = Boolean(
     payload['arguments'] &&
     payload['arguments'].execute &&
@@ -83,6 +79,13 @@ function initialize(data) {
   );
 
   var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+  console.log('-------- Initialize --------');
+  console.log('data', JSON.stringify(data));
+  console.log('Has In Arguments: ', hasInArguments);
+  console.log('inArguments', inArguments);
+  console.log('----------------------------');
+
 
   function getArg(inArguments, arg) {
     var toReturn;
@@ -100,11 +103,12 @@ function initialize(data) {
 
   var ping = getArg(inArguments, 'ping');
 
+  // the value that was passed in from the API.
+  console.log('Ping Argument', ping);
+
   if (ping && ping.value) {
     // If there is a message, skip to the summary step
     $('#ping').val(ping.value);
-  } else if (ping && ping.text) {
-    $('#ping :text').val(ping.text);
   }
 
   // update the next button upon load.
@@ -126,6 +130,10 @@ function save() {
   }];
 
   payload['metaData'].isConfigured = true;
+
+  console.log('----------------------------');
+  console.log('save', save);
+  console.log('----------------------------');
 
   connection.trigger('updateActivity', payload);
 }
