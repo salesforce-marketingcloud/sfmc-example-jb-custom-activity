@@ -23,6 +23,7 @@ const app = express(),
   router = express.Router();
 
 // expose slds assets
+app.use('/assets', serveStatic(path.join(__dirname, '../node_modules/@salesforce-ux/design-system/assets')));
 app.use('/slds', serveStatic(path.join(__dirname, '../node_modules/@salesforce-ux/design-system/assets')));
 app.use('/img', serveStatic(path.join(__dirname, '../src/img')));
 
