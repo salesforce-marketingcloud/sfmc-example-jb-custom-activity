@@ -32,14 +32,14 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "requirejs": "2.3.6"
   },
   "dependencies": {
     "@salesforce-ux/design-system": "=2.8.1",
     "serve-static": "^1.12.3",
     "express": "4.16.3",
     "jquery": "1.11.0",
-    "postmonger": "0.0.16",
-    "requirejs": "2.3.6"
+    "postmonger": "0.0.16"
   }
 }

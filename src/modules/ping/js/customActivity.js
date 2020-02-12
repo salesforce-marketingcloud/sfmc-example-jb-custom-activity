@@ -20,10 +20,7 @@ var exampleInitializeData = {
     contactKey: "{{Context.ContactKey}}",
     execute: {
       inArguments: [{
-        ping: {
-          text: "Dong!",
-          value: "ding"
-        }
+        ping: "ding"
       }],
       outArguments: []
     },
@@ -49,7 +46,7 @@ function onRender(e) {
   connection.trigger('ready');
 
   // To Test Locally uncomment this line
-  // initialize(exampleInitializeData);
+  //initialize(exampleInitializeData);
 }
 
 function updateNextButton(force) {
@@ -106,9 +103,9 @@ function initialize(data) {
   // the value that was passed in from the API.
   console.log('Ping Argument', ping);
 
-  if (ping && ping.value) {
+  if (ping) {
     // If there is a message, skip to the summary step
-    $('#ping').val(ping.value);
+    $('#ping').val(ping);
   }
 
   // update the next button upon load.
@@ -132,7 +129,7 @@ function save() {
   payload['metaData'].isConfigured = true;
 
   console.log('----------------------------');
-  console.log('save', save);
+  console.log('saving', payload);
   console.log('----------------------------');
 
   connection.trigger('updateActivity', payload);
