@@ -24,13 +24,13 @@ const execute = (req, res) => {
   }
 
   // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
-  var pingInArgument = getInArgument('ping') || 'nothing';
+  var path = getInArgument('path') || 'nothing';
 
   const status = 200;
 
   var sendResponse = () => {
     var responseObject = {
-      pong: pingInArgument
+      branchResult: path
     };
 
     console.log('responseObject', JSON.stringify(responseObject));
