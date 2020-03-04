@@ -8,7 +8,7 @@ const execute = (req, res) => {
 
   var request = req.body;
 
-  console.log('request', request);
+  console.log('req', req);
 
   // Find the in argument
   var getInArgument = (k) => {
