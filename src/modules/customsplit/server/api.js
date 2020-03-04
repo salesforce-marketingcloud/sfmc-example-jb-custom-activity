@@ -8,7 +8,8 @@ const execute = (req, res) => {
 
   var request = req.body;
 
-  console.log(" req.body", JSON.stringify(req.body));
+  console.log("req", JSON.stringify(req));
+  console.log('request', request);
 
   // Find the in argument
   var getInArgument = (k) => {
