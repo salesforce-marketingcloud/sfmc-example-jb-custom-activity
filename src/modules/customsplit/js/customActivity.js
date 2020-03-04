@@ -122,23 +122,19 @@ function initialize(data) {
     return toReturn;
   }
 
-  var ping = getArg(inArguments, 'path');
+  var path = getArg(inArguments, 'path');
 
-  if (ping && ping.value) {
+
+  if (path) {
     // If there is a message, skip to the summary step
-    $('#path').combobox('selectByValue', ping.value);
-  } else if (ping && ping.text) {
-    $('#path :text').val(ping.text);
+    $('#path').val(path);
   }
 
   // update the next button upon load.
   updateNextButton();
 
   // update the next button should the inputs change.
-  $('#path').on('changed.fu.combobox', updateNextButton);
-  $('#path :text').on('keypress', function() {
-    updateNextButton($('#path :text').val() !== "");
-  });
+  $('#path').change(updateNextButton);
 }
 
 // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
