@@ -10,14 +10,14 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import path from 'path'
 
 import ping from '../modules/ping/server';
+import customsplit from '../modules/customsplit/server';
 
 const MODULES_BASE_PATH = '../src/modules';
 
-
 const modules = [
-  ping
+  ping,
+  customsplit,
 ];
-
 
 const app = express(),
   DIST_DIR = __dirname,
@@ -44,6 +44,8 @@ modules.forEach((module) => {
 
   let m = module.setup;
 
+  console.log("Module", m.name);
+
   m.routes.forEach((r) => {
 
     let path = `/modules/${m.name}/${r.path}`.replace('//', '/').replace('//', '/');
@@ -60,7 +62,6 @@ modules.forEach((module) => {
     };
   });
 });
-
 
 console.log("---------------------------------------------------------");
 

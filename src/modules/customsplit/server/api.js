@@ -1,10 +1,10 @@
-'use strict';
+import config from './config';
 
-exports.executeLifecycle = (req, res) => {
+const executeLifecycle = (req, res) => {
   return res.json({});
 }
 
-exports.execute = (req, res) => {
+const execute = (req, res) => {
 
   var request = req.body;
 
@@ -23,23 +23,60 @@ exports.execute = (req, res) => {
     return;
   }
 
-
-
   // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
   var pingInArgument = getInArgument('ping') || 'nothing';
 
   const status = 200;
 
-
   var sendResponse = () => {
     var responseObject = {
-      branch: ''
+      pong: pingInArgument
     };
 
+    console.log('responseObject', JSON.stringify(responseObject));
     res
       .status(status)
       .json(responseObject);
   }
 
   sendResponse();
+};
+
+export default {
+  name: 'customsplit',
+  routes: [{
+      path: '/config.json',
+      method: 'GET',
+      resolve: (req, res) => {
+        // Return the JSON configuration
+        console.log('req', req.headers['host']);
+        res.status(200)
+          .json(config(req));
+      }
+    },
+    {
+      path: '/save',
+      method: 'POST',
+      resolve: executeLifecycle
+    },
+    {
+      path: '/publish',
+      method: 'POST',
+      resolve: executeLifecycle
+    }, {
+      path: '/validate',
+      method: 'POST',
+      resolve: executeLifecycle
+    },
+    {
+      path: '/stop',
+      method: 'POST',
+      resolve: executeLifecycle
+    },
+    {
+      path: '/execute',
+      method: 'POST',
+      resolve: execute
+    }
+  ]
 };

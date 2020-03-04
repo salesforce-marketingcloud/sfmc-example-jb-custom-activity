@@ -26,6 +26,7 @@ const execute = (req, res) => {
   // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
   var pingInArgument = getInArgument('ping') || 'nothing';
 
+
   const status = 200;
 
   var sendResponse = () => {
@@ -44,7 +45,6 @@ const execute = (req, res) => {
 
 export default {
   name: 'ping',
-  img:  'img',
   routes: [{
       path: '/config.json',
       method: 'GET',

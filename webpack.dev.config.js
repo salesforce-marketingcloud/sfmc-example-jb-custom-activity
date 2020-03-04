@@ -13,8 +13,11 @@ module.exports = {
     'modules/ping/index': [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
       './src/modules/ping/index.js'
+    ],
+    'modules/customsplit/index': [
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+      './src/modules/customsplit/index.js'
     ]
-    //'modules/customsplit/index': './src/modules/customsplit/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -92,6 +95,12 @@ module.exports = {
       template: "./src/modules/ping/html/index.html",
       filename: "./modules/ping/index.html",
       chunks: ['modules/ping/index'],
+      excludeChunks: ['server']
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/modules/customsplit/html/index.html",
+      filename: "./modules/customsplit/index.html",
+      chunks: ['modules/customsplit/index'],
       excludeChunks: ['server']
     }),
     new MiniCssExtractPlugin({
