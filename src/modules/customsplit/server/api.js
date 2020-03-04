@@ -4,17 +4,18 @@ const executeLifecycle = (req, res) => {
   return res.json({});
 }
 
-const execute = (req, res) => {
+var execute = (req, res) => {
 
   var request = req.body;
 
-  console.log('req', req);
+  console.log('req', req === undefined ? 'empty' : has);
+  console.log('req.body', req.body);
 
   // Find the in argument
   var getInArgument = (k) => {
-    if (request && request.inArguments) {
-      for (let i = 0; i < request.inArguments.length; i++) {
-        let e = request.inArguments[i];
+    if (req.body && req.body.inArguments) {
+      for (let i = 0; i < req.body.inArguments.length; i++) {
+        let e = req.body.inArguments[i];
         if (k in e) {
           return e[k];
         }
