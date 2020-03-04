@@ -166,6 +166,14 @@ function save() {
   }];
 
   payload['metaData'].isConfigured = true;
+
+
+    console.log('----------------------------');
+    console.log('saving', payload);
+    console.log('----------------------------');
+
+
+  connection.trigger('updateActivity', payload);
 }
 
 function getMessage() {
