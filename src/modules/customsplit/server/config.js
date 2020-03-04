@@ -4,7 +4,7 @@ const config = (req) => {
     workflowApiVersion: '1.1',
     metaData: {
       // the location of our icon file
-      icon: `https://${req.headers['host']}/img/customsplit.svg`,
+      icon: `https://${req.headers['host']}/img/decision.svg`,
       category: 'customer'
     },
     type: 'REST',
