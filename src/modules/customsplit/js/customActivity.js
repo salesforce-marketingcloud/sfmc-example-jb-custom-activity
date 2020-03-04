@@ -169,10 +169,5 @@ function save() {
 }
 
 function getMessage() {
-  // We will only return the message if they have typed in a message or selected
-  // it from the list.
-  var selection = $('#path').combobox('selectedItem');
-  if (selection.text !== "") {
-    return selection;
-  }
+  return $('#path').val();
 }
