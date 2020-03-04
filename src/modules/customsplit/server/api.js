@@ -8,7 +8,7 @@ var execute = (req, res) => {
 
   var request = req.body;
 
-  console.log('req', req === undefined ? 'empty' : has);
+  console.log('req', req === undefined ? 'empty' : 'has');
   console.log('req.body', req.body);
 
   // Find the in argument
