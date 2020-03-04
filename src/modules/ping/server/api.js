@@ -22,6 +22,7 @@ const execute = (req, res) => {
     }
     return;
   }
+  
 
   // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
   var pingInArgument = getInArgument('ping') || 'nothing';
