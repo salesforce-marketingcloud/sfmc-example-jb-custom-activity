@@ -11,6 +11,8 @@ import path from 'path'
 import ping from '../modules/ping/server';
 import customsplit from '../modules/customsplit/server';
 
+import bodyParser from 'body-parser';
+
 
 const MODULES_BASE_PATH = '../src/modules';
 
@@ -24,6 +26,10 @@ const app = express(),
   HTML_FILE = path.join(DIST_DIR, 'index.html'),
   compiler = webpack(config),
   router = express.Router();
+
+
+// parse application/json
+app.use(bodyParser.json())
 
 // expose slds assets
 app.use('/assets', serveStatic(path.join(__dirname, '../node_modules/@salesforce-ux/design-system/assets')));
@@ -44,7 +50,7 @@ modules.forEach((module) => {
 
     let path = `/modules/${m.name}/${r.path}`.replace('//', '/').replace('//', '/');
 
-    switch(r.method) {
+    switch (r.method) {
       case 'POST':
         app.post(path, r.resolve);
         console.log("-- ", r.method, path);
@@ -63,7 +69,7 @@ app.use('/', router);
 
 app.use(express.static(DIST_DIR))
 app.get('*', (req, res) => {
-    res.sendFile(HTML_FILE)
+  res.sendFile(HTML_FILE)
 });
 
 const PORT = process.env.PORT || 8080

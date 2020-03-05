@@ -12,6 +12,8 @@ import path from 'path'
 import ping from '../modules/ping/server';
 import customsplit from '../modules/customsplit/server';
 
+import bodyParser from 'body-parser';
+
 const MODULES_BASE_PATH = '../src/modules';
 
 const modules = [
@@ -28,6 +30,9 @@ const app = express(),
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(webpackHotMiddleware(compiler));
 
