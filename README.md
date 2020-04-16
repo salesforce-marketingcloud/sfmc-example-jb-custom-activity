@@ -1,45 +1,28 @@
 # SFMC Example Activity
 This example can be viewed at https://sfmc-example-custom-activity.herokuapp.com
-
-ReST service for responding to POST calls from Outbound Call Activity in JB v2.
-
- TODO:
- - support requests encoded with JWT. parsing determined by content type in request
- - support for oauth server-server flow
- - configurable latency - random range of latency per call in milliseconds
-
 ----
-### Debugging
-```
-npm install
-grunt dev
-```
-Navigate to http://localhost:3000
 
 
-### Running the service
+### Running the service Locally
 ```
+# Install the dependencies
 npm install
+
+# Build to run locally
+npm run-script buildDev
+
+# Start the service
 npm start
 ```
 ----
 ## Examples
 
 
-### /ping
-Simple example of
+### /modules/ping
+Simple example of the custom activity.
 
-#### Features
- - dumb reponse from request
-  -
 
-  - 50ms delay
-  - 1 in 10,000 chance there will be an http 500 error returned
-  - 1 in 10 chance a response code of 400
-  - 90% chance HTTP 200 ok result: { "branch": "branch "}
-
-### /customsplit
-
+### /modules/customsplit
 
 
 
