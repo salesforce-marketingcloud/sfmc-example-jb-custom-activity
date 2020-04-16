@@ -2,7 +2,6 @@
 This example can be viewed at https://sfmc-example-custom-activity.herokuapp.com
 ----
 
-
 ### Running the service Locally
 ```
 # Install the dependencies
