@@ -1,0 +1,23 @@
+{
+    "extends": ["eslint:recommended", "google"],
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "mocha": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "globals": {
+      "assert": "readonly"
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "linebreak-style": "off",
+        "no-trailing-spaces": "off",
+        "max-len": ["error", { "code": 120 }],
+        "require-jsdoc": "off",
+        "padded-blocks": "off"
+    }
+}
