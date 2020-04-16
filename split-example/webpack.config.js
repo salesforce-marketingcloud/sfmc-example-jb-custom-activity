@@ -1,8 +1,6 @@
 const PACKAGE = require('../package.json');
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = function(env, argv) {
@@ -22,25 +20,9 @@ module.exports = function(env, argv) {
                     exclude: /node_modules/,
                     loader: "babel-loader",
                 },
-                {
-                    test: /\.less$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
-                }
             ]
         },
         plugins: [
-            new MiniCssExtractPlugin({
-                filename: 'split-activity.css'
-            }),
-            new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, 'build/index.ejs'),
-                templateParameters: {
-                    // optional CSP to use in your html header.
-                    // we'll allow everything for the example but you may want to change this
-                    // in production builds
-                    contentSecurityPolicy: 'default-src \'self\'; connect-src *',
-                },
-            }),
             new CopyPlugin([
                 {
                     // you may want to bundle SLDS SASS files with webpack,

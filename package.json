@@ -1,7 +1,7 @@
 {
   "name": "sfmc-custom-activity-ping-example",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "author": "Salesforce Marketing Cloud",
   "description": "Custom Journey Builder Activity",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "heroku-prebuild": "npm install --dev",
-    "start": "node ./index.js"
+    "start": "node ./app.js"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",

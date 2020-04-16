@@ -1,7 +1,6 @@
 const PACKAGE = require('../package.json');
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = function(env, argv) {
@@ -24,15 +23,6 @@ module.exports = function(env, argv) {
             ]
         },
         plugins: [
-            new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, 'build/index.ejs'),
-                templateParameters: {
-                    // optional CSP to use in your html header.
-                    // we'll allow everything for the example but you may want to change this
-                    // in production builds
-                    contentSecurityPolicy: 'default-src \'self\'; connect-src *',
-                },
-            }),
             new CopyPlugin([
                 {
                     // you may want to bundle SLDS SASS files with webpack,
