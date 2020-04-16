@@ -46,13 +46,15 @@ module.exports = function configJSON(req) {
             arguments: {
                 execute: {
                     inArguments: [],
-                    outArguments: [{
-                        pong: {
-                            dataType: 'Text',
-                            direction: 'out',
-                            access: 'visible'
+                    outArguments: [
+                        {
+                            pong: {
+                                dataType: 'Text',
+                                direction: 'out',
+                                access: 'visible'
+                            }
                         }
-                    }]
+                    ]
                 }
             }
         }

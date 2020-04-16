@@ -1,4 +1,5 @@
 # WEBPACK
+dist
 modules/ping/dist
 modules/customsplit/dist
 

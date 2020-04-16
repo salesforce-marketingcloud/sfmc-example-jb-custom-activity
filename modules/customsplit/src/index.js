@@ -1,172 +1,196 @@
+// JOURNEY BUILDER CUSTOM ACTIVITY - CUSTOM SPLIT
+// ````````````````````````````````````````````````````````````
+// This example demonstrates ... explain ....
+// We're building on concepts visited in previous examples so make sure
+// you check out the "ping" module before jumping into this one
+
 import Postmonger from 'postmonger';
 
 const connection = new Postmonger.Session();
-var payload = {};
-var doneOnce = false;
+let activity = null;
+let doneOnce = false;
 
-document.addEventListener('DOMContentLoaded', onRender);
+document.addEventListener('DOMContentLoaded', function main() {
 
-connection.on('initActivity', initialize);
-connection.on('requestedTokens', onGetTokens);
-connection.on('requestedEndpoints', onGetEndpoints);
-connection.on('clickedNext', save);
+    // Setup a test harness so we can interact with our custom activity
+    // outside of journey builder using window functions and browser devtools.
+    // This isn't required by your activity, its for example purposes only
+    setupExampleTestHarness();
 
+    // setup our ui event handlers
+    setupEventHandlers();
 
-var exampleInitializeData = {
-    outcomes: [{
-        arguments: {
-            branchResult: 'no_action'
-        },
-        metaData: {
-            label: 'No Activity'
-        }
-    },
-        {
-            arguments: {
-                branchResult: 'viewed_item'
-            },
-            metaData: {
-                label: 'Viewed Item'
-            }
-        },
-        {
-            arguments: {
-                branchResult: 'abandoned_cart'
-            },
-            metaData: {
-                label: 'Abandoned Cart'
-            }
-        },
-        {
-            arguments: {
-                branchResult: 'purchased_item'
-            },
-            metaData: {
-                label: 'Purchased Item'
-            }
-        }
-    ]
-};
+    // Journey Builder will trigger "initActivity" after it receives the "ready" event
+    connection.on('initActivity', onInitActivity);
 
-function onRender(e) {
-
-    // JB will respond the first time 'ready' is called with 'initActivity'
-    // All Postmonger events
-    // https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/using-postmonger.htm
+    // signal Journey Builder that we're ready to receive the activity...
     connection.trigger('ready');
-    connection.trigger('requestTokens');
-    connection.trigger('requestEndpoints');
+});
 
-    // To Test Locally uncomment this line
-    //initialize(exampleInitializeData);
-}
+// this function is triggered by Journey Builder after it receives the "ready" signal
+function onInitActivity(payload) {
+    activity = payload;
 
-function updateNextButton(force) {
-    // we can enable the button for 'done' by calling the
-    // connection to alert it to update the button.
-    connection.trigger('updateButton', {
-        button: 'next',
-        text: (force || getMessage()) ? 'done' : 'next',
-        enabled: Boolean((force || getMessage()))
-    });
-}
-
-function initialize(data) {
-
-    if (data) {
-        payload = data;
-    }
-
-    console.log('-------- Initialize --------');
-    console.log('data', JSON.stringify(data));
-    console.log('----------------------------');
-
-    data.outcomes.forEach((item) => {
-        $('#path').append(
-            $('<option/>', {
-                value: item.arguments.branchResult,
-                text : item.metaData.label
-            })
-        );
-    });
-
-    var hasInArguments = Boolean(
-        payload['arguments'] &&
-        payload['arguments'].execute &&
-        payload['arguments'].execute.inArguments &&
-        payload['arguments'].execute.inArguments.length > 0
+    const hasInArguments = Boolean(
+        activity.arguments &&
+        activity.arguments.execute &&
+        activity.arguments.execute.inArguments &&
+        activity.arguments.execute.inArguments.length > 0
     );
 
-    var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+    const inArguments = hasInArguments ? activity.arguments.execute.inArguments : [];
 
-    function getArg(inArguments, arg) {
-        var toReturn;
-        $.each(inArguments, function(index, inArgument) {
-            if (!toReturn) {
-                $.each(inArgument, function(key, val) {
-                    if (key === arg) {
-                        toReturn = val;
-                    }
-                });
-            }
-        });
-        return toReturn;
+    console.log('-------- Initialize --------');
+    console.log('activity\n', JSON.stringify(activity, null, 4));
+    console.log('Has In Arguments: ', hasInArguments);
+    console.log('inArguments', inArguments);
+    console.log('----------------------------');
+
+    // render all of this activity's outcomes into a drop down list
+    const selectOptions = activity.outcomes.map((outcome) => {
+        const value = outcome.arguments.branchResult;
+        const text = outcome.metaData.label;
+        return `<option value="${value}">${text}</option>`;
+    });
+
+    document.getElementById('path').innerHTML = selectOptions.join('');
+
+    const pathArgument = inArguments.find((arg) => arg.path);
+
+    console.log('Path Argument', pathArgument);
+
+}
+
+function onPathSelectChange() {
+    // enable or disable the done button when the select option changes
+    const select = document.getElementById('path');
+
+    if (select.selectedIndex) {
+        document.getElementById('done').removeAttribute('disabled');
+    } else {
+        document.getElementById('done').setAttribute('disabled', '');
     }
 
-    var path = getArg(inArguments, 'path');
-
-
-    if (path) {
-        // If there is a message, skip to the summary step
-        $('#path').val(path);
-    }
-
-    // update the next button upon load.
-    updateNextButton();
-
-    // update the next button should the inputs change.
-    $('#path').change(updateNextButton);
+    // let journey builder know the activity has changes
+    connection.trigger('setActivityDirtyState', true);
 }
 
-// Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
-function onGetTokens(tokens) {
+function onDoneButtonClick() {
+    // you can set the name that appears below the activity with the name property
+    activity.name = 'My Split Activity';
 
-    console.log('------ tokens -------');
-    console.log(JSON.stringify(tokens));
-    console.log('---------------------');
+    // we set must metaData.isConfigured in order to tell JB that
+    // this activity is ready for activation
+    activity['metaData'].isConfigured = true;
 
-}
+    // get the option that the user selected and save it to
+    const select = document.getElementById('path');
+    const option = select.options[select.selectedIndex];
 
-// Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
-function onGetEndpoints(endpoints) {
-
-    console.log('------ endpoints -------');
-    console.log(JSON.stringify(endpoints));
-    console.log('------------------------');
-}
-
-function save() {
-    // 'payload' is initialized on 'initActivity' above.
-    // Journey Builder sends an initial payload with defaults
-    // set by this activity's config.json file.  Any property
-    // may be overridden as desired.
-    payload.name = name;
-
-    payload['arguments'].execute.inArguments = [{
-        path: getMessage()
+    activity.arguments.execute.inArguments = [{
+        path: option.value
     }];
 
-    payload['metaData'].isConfigured = true;
-
-
     console.log('----------------------------');
-    console.log('saving', payload);
+    console.log('saving', activity);
     console.log('----------------------------');
 
-
-    connection.trigger('updateActivity', payload);
+    connection.trigger('updateActivity', activity);
 }
 
-function getMessage() {
-    return $('#path').val();
+function onCancelButtonClick() {
+    // tell Journey Builder that this activity has no changes.
+    // we wont be prompted to save changes when the inspector closes
+    connection.trigger('setActivityDirtyState', false);
+
+    // now request that Journey Builder closes the inspector/drawer
+    connection.trigger('requestInspectorClose');
+}
+
+function setupEventHandlers() {
+    document.getElementById('done').addEventListener('click', onDoneButtonClick);
+    document.getElementById('cancel').addEventListener('click', onCancelButtonClick);
+    document.getElementById('path').addEventListener('change', onPathSelectChange);
+}
+
+// this function is for example purposes only. it sets ups a Postmonger
+// session that emulates how Journey Builder works. You can call jb.ready()
+// from the console to kick off the initActivity event with a mock activity object
+function setupExampleTestHarness() {
+    const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if (!isLocalhost) {
+        // don't load the test harness functions when running in Journey Builder
+        return;
+    }
+
+    const jbSession = new Postmonger.Session();
+    const jb = {};
+    window.jb = jb;
+
+    jbSession.on('setActivityDirtyState', function(value) {
+        console.log('[echo] setActivityDirtyState -> ', value);
+    });
+
+    jbSession.on('requestInspectorClose', function() {
+        console.log('[echo] requestInspectorClose');
+    });
+
+    jbSession.on('updateActivity', function(activity) {
+        console.log('[echo] updateActivity -> ', JSON.stringify(activity, null, 4));
+    });
+
+    jbSession.on('ready', function() {
+        console.log('[echo] ready');
+        console.log('\tuse jb.ready() from the console to initialize your activity')
+    });
+
+    // fire the ready signal with an example activity
+    jb.ready = function() {
+        jbSession.trigger('initActivity', {
+            name: '',
+            key: 'EXAMPLE-1',
+            metaData: {},
+            configurationArguments: {},
+            arguments: {
+                execute: {
+                    inArguments: [],
+                    outArguments: [],
+                }
+            },
+            outcomes: [
+                {
+                    arguments: {
+                        branchResult: 'no_action'
+                    },
+                    metaData: {
+                        label: 'No Activity'
+                    }
+                },
+                {
+                    arguments: {
+                        branchResult: 'viewed_item'
+                    },
+                    metaData: {
+                        label: 'Viewed Item'
+                    }
+                },
+                {
+                    arguments: {
+                        branchResult: 'abandoned_cart'
+                    },
+                    metaData: {
+                        label: 'Abandoned Cart'
+                    }
+                },
+                {
+                    arguments: {
+                        branchResult: 'purchased_item'
+                    },
+                    metaData: {
+                        label: 'Purchased Item'
+                    }
+                }
+            ]
+        });
+    };
 }

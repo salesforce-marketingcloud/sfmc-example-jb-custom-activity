@@ -44,15 +44,16 @@ module.exports = function configJSON(req) {
                 emptyIframe: true,
             }
         },
-        outcomes: [{
-            arguments: {
-                branchResult: 'no_action',
-                'some argument': 'passed from config.json for hold_item'
+        outcomes: [
+            {
+                arguments: {
+                    branchResult: 'no_action',
+                    'some argument': 'passed from config.json for hold_item'
+                },
+                metaData: {
+                    label: 'No Activity'
+                }
             },
-            metaData: {
-                label: 'No Activity'
-            }
-        },
             {
                 arguments: {
                     branchResult: 'viewed_item',
@@ -85,13 +86,15 @@ module.exports = function configJSON(req) {
             arguments: {
                 execute: {
                     inArguments: [],
-                    outArguments: [{
-                        pong: {
-                            dataType: 'Text',
-                            direction: 'out',
-                            access: 'visible'
+                    outArguments: [
+                        {
+                            pong: {
+                                dataType: 'Text',
+                                direction: 'out',
+                                access: 'visible'
+                            }
                         }
-                    }]
+                    ]
                 }
             }
         }

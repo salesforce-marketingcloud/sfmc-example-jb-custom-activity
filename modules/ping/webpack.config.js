@@ -4,9 +4,9 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = function(env, argv) {
+    const prod = argv.mode === 'production';
     return {
-        // change the mode and devtool based on the env switch
-        mode: 'development',
+        mode: prod ? 'production' : 'development',
         devtool: 'cheap-source-map',
         entry: path.resolve(__dirname, './src/index.js'),
         output: {
@@ -18,7 +18,7 @@ module.exports = function(env, argv) {
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
-                    loader: "babel-loader",
+                    loader: 'babel-loader',
                 },
             ]
         },
@@ -32,7 +32,7 @@ module.exports = function(env, argv) {
                 },
             ]),
             new webpack.BannerPlugin(
-                `${PACKAGE.author} - ${PACKAGE.description} PING EXAMPLE`
+                `${PACKAGE.author} - ${PACKAGE.description} - Ping`
             ),
         ]
     };
