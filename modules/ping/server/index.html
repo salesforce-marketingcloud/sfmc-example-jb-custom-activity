@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Ping Activity</title>
+    <link rel="stylesheet" type="text/css" href="dist/design-system/styles/salesforce-lightning-design-system.css" >
+</head>
+<body>
+<div class="slds-form">
+    <div class="slds-form-element slds-m-bottom_small">
+        <label class="slds-form-element__label" for="ping">Select Label</label>
+        <div class="slds-form-element__control">
+            <div class="slds-select_container">
+                <select class="slds-select" id="ping">
+                    <option value="">Please select</option>
+                    <option value="ping">Ping</option>
+                    <option value="ding">Ding</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ping-output" class="slds-text-heading_small"></div>
+<div class="slds-docked-form-footer" style="justify-content: flex-end">
+    <button id="cancel" type="button" class="slds-button slds-button_neutral">Cancel</button>
+    <button id="done" disabled type="button" class="slds-button slds-button_brand slds-m-right--medium">Done</button>
+</div>
+<script type="text/javascript" src="dist/ping-activity.js"></script>
+</body>
+</html>

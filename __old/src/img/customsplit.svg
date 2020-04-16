@@ -1,0 +1,9 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #FFF;
+      }
+    </style>
+  </defs>
+  <title>icon</title><path class="cls-1" d="M12.7,10.83a2.5,2.5,0,1,0,0-1.67H5.83V3.33H12.7a2.5,2.5,0,1,0,0-1.67H5.83A1.68,1.68,0,0,0,4.17,3.35V9.17H0v1.67H4.17v5.83a1.67,1.67,0,0,0,1.67,1.67h6.87a2.5,2.5,0,1,0,0-1.67H5.83V10.83H12.7Z"/></svg>
