@@ -106,6 +106,7 @@ function onCancelButtonClick() {
 function onPingSelectChange() {
     // enable or disable the done button when the select option changes
     const select = document.getElementById('ping');
+
     if (select.selectedIndex) {
         document.getElementById('done').removeAttribute('disabled');
     } else {

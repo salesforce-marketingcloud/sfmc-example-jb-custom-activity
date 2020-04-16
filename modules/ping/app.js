@@ -3,27 +3,26 @@ const configJSON = require('./server/config-json');
 
 // setup the ping example app
 module.exports = function pingExample(app, options) {
-    const {rootDirectory} = options;
-    const exampleDirectory = `${rootDirectory}/ping-example`;
+    const moduleDirectory = `${options.rootDirectory}/modules/ping`;
 
     // setup static resources
-    app.use('/ping-example/dist', express.static(`${exampleDirectory}/dist`));
-    app.use('/ping-example/images', express.static(`${exampleDirectory}/images`));
+    app.use('/modules/ping/dist', express.static(`${moduleDirectory}/dist`));
+    app.use('/modules/ping/images', express.static(`${moduleDirectory}/images`));
 
     // setup the index redirect
-    app.get('/ping-example/', function(req, res) {
-        return res.redirect('/ping-example/index.html');
+    app.get('/modules/ping/', function(req, res) {
+        return res.redirect('/modules/ping/index.html');
     });
 
     // setup index.html route
-    app.get('/ping-example/index.html', function(req, res) {
+    app.get('/modules/ping/index.html', function(req, res) {
         // you can use your favorite templating library to generate your html file.
         // this example keeps things simple and just returns a static file
-        return res.sendFile(`${exampleDirectory}/server/index.html`);
+        return res.sendFile(`${moduleDirectory}/server/index.html`);
     });
 
     // setup config.json route
-    app.get('/ping-example/config.json', function(req, res) {
+    app.get('/modules/ping/config.json', function(req, res) {
         // Journey Builder looks for config.json when the canvas loads.
         // We'll dynamically generate the config object with a function
         return res.status(200).json(configJSON(req));
@@ -33,28 +32,28 @@ module.exports = function pingExample(app, options) {
     // BEGIN JOURNEY BUILDER LIFECYCLE EVENTS
     // ```````````````````````````````````````````````````````
 
-    app.post('/save', function(req, res) {
-        console.log('debug: /ping-example/save');
+    app.post('/modules/ping/save', function(req, res) {
+        console.log('debug: /modules/ping/save');
         return res.status(200).json({});
     });
 
-    app.post('/publish', function(req, res) {
-        console.log('debug: /ping-example/save');
+    app.post('/modules/ping/publish', function(req, res) {
+        console.log('debug: /modules/ping/publish');
         return res.status(200).json({});
     });
 
-    app.post('/validate', function(req, res) {
-        console.log('debug: /ping-example/validate');
+    app.post('/modules/ping/validate', function(req, res) {
+        console.log('debug: /modules/ping/validate');
         return res.status(200).json({});
     });
 
-    app.post('/stop', function(req, res) {
-        console.log('debug: /ping-example/stop');
+    app.post('/modules/ping/stop', function(req, res) {
+        console.log('debug: /modules/ping/stop');
         return res.status(200).json({});
     });
 
-    app.post('/execute', function(req, res) {
-        console.log('debug: /ping-example/execute');
+    app.post('/modules/ping/execute', function(req, res) {
+        console.log('debug: /modules/ping/execute');
 
         const request = req.body;
 

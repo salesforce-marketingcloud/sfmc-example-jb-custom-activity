@@ -1,5 +1,5 @@
-const pingExample = require('./ping-example/webpack.config');
-const splitExample = require('./split-example/webpack.config');
+const pingExample = require('./modules/ping/webpack.config');
+const splitExample = require('./modules/customsplit/webpack.config');
 
 module.exports = function(env, argv) {
     return [

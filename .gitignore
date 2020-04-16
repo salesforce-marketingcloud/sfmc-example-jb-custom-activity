@@ -1,6 +1,6 @@
 # WEBPACK
-ping-example/dist
-split-example/dist
+modules/ping/dist
+modules/customsplit/dist
 
 # NODE/NPM/GRUNT
 node_modules

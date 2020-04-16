@@ -1,4 +1,4 @@
-const PACKAGE = require('../package.json');
+const PACKAGE = require('../../package.json');
 const webpack = require('webpack');
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -27,7 +27,7 @@ module.exports = function(env, argv) {
                 {
                     // you may want to bundle SLDS SASS files with webpack,
                     // we'll keep things simple for this example and just copy SLDS into dist
-                    from: path.resolve(__dirname, '../node_modules/@salesforce-ux/design-system/assets'),
+                    from: path.resolve(__dirname, '../../node_modules/@salesforce-ux/design-system/assets'),
                     to: path.resolve(__dirname, 'dist/design-system')
                 },
             ]),
