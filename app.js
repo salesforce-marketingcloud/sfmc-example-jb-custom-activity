@@ -2,6 +2,7 @@ const express = require('express');
 const submodules = [
     require('./sfmc-index/app'),
     require('./ping-example/app'),
+    require('./split-example/app'),
 ];
 require('body-parser');
 
