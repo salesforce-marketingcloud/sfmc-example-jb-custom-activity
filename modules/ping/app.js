@@ -43,11 +43,19 @@ module.exports = function pingExample(app, options) {
 
     // ```````````````````````````````````````````````````````
     // BEGIN JOURNEY BUILDER LIFECYCLE EVENTS
+    //
+    // CONFIGURATION
     // ```````````````````````````````````````````````````````
+    // Reference:
+    // https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/interaction-operating-states.htm
 
     /**
      * Called when a journey is saving the activity.
      * @return {[type]}     [description]
+     * 200 - Return a 200 iff the configuraiton is valid.
+     * 30x - Return if the configuration is invalid (this will block the publish phase)
+     * 40x - Return if the configuration is invalid (this will block the publish phase)
+     * 50x - Return if the configuration is invalid (this will block the publish phase)
      */
     app.post('/modules/ping/save', function(req, res) {
         console.log('debug: /modules/ping/save');
@@ -59,6 +67,10 @@ module.exports = function pingExample(app, options) {
      * This is when a journey is being activiated and eligible for contacts
      * to be processed.
      * @return {[type]}     [description]
+     * 200 - Return a 200 iff the configuraiton is valid.
+     * 30x - Return if the configuration is invalid (this will block the publish phase)
+     * 40x - Return if the configuration is invalid (this will block the publish phase)
+     * 50x - Return if the configuration is invalid (this will block the publish phase)
      */
     app.post('/modules/ping/publish', function(req, res) {
         console.log('debug: /modules/ping/publish');
@@ -70,12 +82,21 @@ module.exports = function pingExample(app, options) {
      * to ensure the configuration is valid.
      * @return {[type]}
      * 200 - Return a 200 iff the configuraiton is valid.
-     * ??? - Return if the configuration is invalid (this will block the publish phase)
+     * 30x - Return if the configuration is invalid (this will block the publish phase)
+     * 40x - Return if the configuration is invalid (this will block the publish phase)
+     * 50x - Return if the configuration is invalid (this will block the publish phase)
      */
     app.post('/modules/ping/validate', function(req, res) {
         console.log('debug: /modules/ping/validate');
         return res.status(200).json({});
     });
+
+
+    // ```````````````````````````````````````````````````````
+    // BEGIN JOURNEY BUILDER LIFECYCLE EVENTS
+    //
+    // EXECUTING JOURNEY
+    // ```````````````````````````````````````````````````````
 
     /**
      * Called when a Journey is stopped.

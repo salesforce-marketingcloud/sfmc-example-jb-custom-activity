@@ -30,6 +30,112 @@ module.exports = function splitExample(app, options) {
 
     // ```````````````````````````````````````````````````````
     // BEGIN JOURNEY BUILDER LIFECYCLE EVENTS
+    //
+    // CONFIGURATION
     // ```````````````````````````````````````````````````````
+    // Reference:
+    // https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/interaction-operating-states.htm
+
+    /**
+     * Called when a journey is saving the activity.
+     * @return {[type]}     [description]
+     * 200 - Return a 200 iff the configuraiton is valid.
+     * 30x - Return if the configuration is invalid (this will block the publish phase)
+     * 40x - Return if the configuration is invalid (this will block the publish phase)
+     * 50x - Return if the configuration is invalid (this will block the publish phase)
+     */
+    app.post('/modules/customsplit/save', function(req, res) {
+        console.log('debug: /modules/customsplit/save');
+        return res.status(200).json({});
+    });
+
+    /**
+     * Called when a Journey has been published.
+     * This is when a journey is being activiated and eligible for contacts
+     * to be processed.
+     * @return {[type]}     [description]
+     * 200 - Return a 200 iff the configuraiton is valid.
+     * 30x - Return if the configuration is invalid (this will block the publish phase)
+     * 40x - Return if the configuration is invalid (this will block the publish phase)
+     * 50x - Return if the configuration is invalid (this will block the publish phase)
+     */
+    app.post('/modules/customsplit/publish', function(req, res) {
+        console.log('debug: /modules/customsplit/publish');
+        return res.status(200).json({});
+    });
+
+    /**
+     * Called when Journey Builder wants you to validate the configuration
+     * to ensure the configuration is valid.
+     * @return {[type]}
+     * 200 - Return a 200 iff the configuraiton is valid.
+     * 30x - Return if the configuration is invalid (this will block the publish phase)
+     * 40x - Return if the configuration is invalid (this will block the publish phase)
+     * 50x - Return if the configuration is invalid (this will block the publish phase)
+     */
+    app.post('/modules/customsplit/validate', function(req, res) {
+        console.log('debug: /modules/customsplit/validate');
+        return res.status(200).json({});
+    });
+
+
+    // ```````````````````````````````````````````````````````
+    // BEGIN JOURNEY BUILDER LIFECYCLE EVENTS
+    //
+    // EXECUTING JOURNEY
+    // ```````````````````````````````````````````````````````
+
+    /**
+     * Called when a Journey is stopped.
+     * @return {[type]}
+     */
+    app.post('/modules/customsplit/stop', function(req, res) {
+        console.log('debug: /modules/customsplit/stop');
+        return res.status(200).json({});
+    });
+
+    /**
+     * Called when a contact is flowing through the Journey.
+     * @return {[type]}
+     * 200 - Processed OK
+     * 3xx - Contact is ejected from the Journey.
+     * 4xx - Contact is ejected from the Journey.
+     * 5xx - Contact is ejected from the Journey.
+     */
+    app.post('/modules/customsplit/execute', function(req, res) {
+        console.log('debug: /modules/customsplit/execute');
+
+        var request = req.body;
+
+        console.log('req', req === undefined ? 'empty' : 'has');
+        console.log('req.body', req.body);
+
+        // Find the in argument
+        var getInArgument = (k) => {
+          if (req.body && req.body.inArguments) {
+            for (let i = 0; i < req.body.inArguments.length; i++) {
+              let e = req.body.inArguments[i];
+              if (k in e) {
+                return e[k];
+              }
+            }
+          }
+          return;
+        }
+
+        // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
+        var path = getInArgument('path') || 'nothing';
+
+        const status = 200;
+
+        var responseObject = {
+          branchResult: path
+        };
+
+        console.log('responseObject', JSON.stringify(responseObject));
+
+
+        return res.status(200).json(responseObject);
+    });
 
 };

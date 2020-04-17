@@ -3,7 +3,7 @@ module.exports = function configJSON(req) {
     workflowApiVersion: '1.1',
     metaData: {
       // the location of our icon file
-      icon: `images/icon.png`,
+      icon: `images/icon.svg`,
       category: 'customer'
     },
     type: 'REST',
@@ -15,6 +15,7 @@ module.exports = function configJSON(req) {
     },
     arguments: {
       execute: {
+        // See: https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/how-data-binding-works.htm
         inArguments: [],
         outArguments: [],
         // Fill in the host with the host that this is running on.
