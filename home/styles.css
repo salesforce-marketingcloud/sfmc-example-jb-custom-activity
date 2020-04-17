@@ -35,10 +35,11 @@ body>.container {
     display: inline-block;
     border-radius: .25rem;
     line-height: 1;
+    margin: .25rem;
 }
 
 .slds-icon-standard-activity .slds-icon {
-    transform: rotate(-45deg) scale(.75);
+    transform: rotate(-45deg) scale(.70);
 }
 
 .slds-card-activity .slds-card__header {

@@ -1,3 +1,16 @@
+// JOURNEY BUILDER CUSTOM ACTIVITY - PING ACTIVITY
+// ````````````````````````````````````````````````````````````
+// SERVER SIDE IMPLEMENTATION
+//
+// This example demonstrates
+// * Configuration Lifecycle Events
+//    - save
+//    - publish
+//    - validate
+// * Execution Lifecycle Events
+//    - execute
+//    - stop
+
 const express = require('express');
 const configJSON = require('./server/config-json');
 
@@ -32,26 +45,55 @@ module.exports = function pingExample(app, options) {
     // BEGIN JOURNEY BUILDER LIFECYCLE EVENTS
     // ```````````````````````````````````````````````````````
 
+    /**
+     * Called when a journey is saving the activity.
+     * @return {[type]}     [description]
+     */
     app.post('/modules/ping/save', function(req, res) {
         console.log('debug: /modules/ping/save');
         return res.status(200).json({});
     });
 
+    /**
+     * Called when a Journey has been published.
+     * This is when a journey is being activiated and eligible for contacts
+     * to be processed.
+     * @return {[type]}     [description]
+     */
     app.post('/modules/ping/publish', function(req, res) {
         console.log('debug: /modules/ping/publish');
         return res.status(200).json({});
     });
 
+    /**
+     * Called when Journey Builder wants you to validate the configuration
+     * to ensure the configuration is valid.
+     * @return {[type]}
+     * 200 - Return a 200 iff the configuraiton is valid.
+     * ??? - Return if the configuration is invalid (this will block the publish phase)
+     */
     app.post('/modules/ping/validate', function(req, res) {
         console.log('debug: /modules/ping/validate');
         return res.status(200).json({});
     });
 
+    /**
+     * Called when a Journey is stopped.
+     * @return {[type]}
+     */
     app.post('/modules/ping/stop', function(req, res) {
         console.log('debug: /modules/ping/stop');
         return res.status(200).json({});
     });
 
+    /**
+     * Called when a contact is flowing through the Journey.
+     * @return {[type]}
+     * 200 - Processed OK
+     * 3xx - Contact is ejected from the Journey.
+     * 4xx - Contact is ejected from the Journey.
+     * 5xx - Contact is ejected from the Journey.
+     */
     app.post('/modules/ping/execute', function(req, res) {
         console.log('debug: /modules/ping/execute');
 
