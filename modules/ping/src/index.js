@@ -75,10 +75,7 @@ function onInitActivity(payload) {
 
     // if a ping back argument was set, show the message in the view.
     if (pingArgument) {
-        const pingOutput = document.getElementById('ping-output');
-        pingOutput.innerText = `Server Ping Response -> ${pingArgument.ping}`;
-        document.getElementById('done').removeAttribute('disabled');
-        document.getElementById('ping').setAttribute('disabled', '');
+        selectPingOption(pingArgument.ping);
     }
 
     // if the ping back argument doesn't exist the user can pick
@@ -130,6 +127,15 @@ function onPingSelectChange() {
 
     // let journey builder know the activity has changes
     connection.trigger('setActivityDirtyState', true);
+}
+
+function selectPingOption(value) {
+    const select = document.getElementById('ping');
+    const selectOption = select.querySelector(`[value=${value}]`);
+    if (selectOption) {
+        selectOption.selected = true;
+        onPingSelectChange();
+    }
 }
 
 function setupEventHandlers() {
