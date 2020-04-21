@@ -1,2 +1,7 @@
 node_modules
 dist
+.idea/misc.xml
+.idea/modules.xml
+.idea/sfmc-example-custom-activity.iml
+.idea/vcs.xml
+.idea/workspace.xml
