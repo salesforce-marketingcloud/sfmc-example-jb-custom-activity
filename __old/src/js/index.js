@@ -1,5 +1,5 @@
 // Logger
-import 'customsplit';
+import 'discount-redemption-split';
 
 
 // Log message to console

@@ -20,7 +20,7 @@ var exampleInitializeData = {
     contactKey: "{{Context.ContactKey}}",
     execute: {
       inArguments: [{
-        ping: "ding"
+        discount-code: "ding"
       }],
       outArguments: []
     },
@@ -98,21 +98,21 @@ function initialize(data) {
     return toReturn;
   }
 
-  var ping = getArg(inArguments, 'ping');
+  var discount-code = getArg(inArguments, 'discount-code');
 
   // the value that was passed in from the API.
-  console.log('Ping Argument', ping);
+  console.log('discount-code Argument', discount-code);
 
-  if (ping) {
+  if (discount-code) {
     // If there is a message, skip to the summary step
-    $('#ping').val(ping);
+    $('#discount-code').val(discount-code);
   }
 
   // update the next button upon load.
   updateNextButton();
 
   // update the next button should the inputs change.
-  $('#ping').change(updateNextButton);
+  $('#discount-code').change(updateNextButton);
 }
 
 function save() {
@@ -123,7 +123,7 @@ function save() {
   payload.name = name;
 
   payload['arguments'].execute.inArguments = [{
-    "ping": getMessage()
+    "discount-code": getMessage()
   }];
 
   payload['metaData'].isConfigured = true;
@@ -138,5 +138,5 @@ function save() {
 function getMessage() {
   // We will only return the message if they have typed in a message or selected
   // it from the list.
-  return $('#ping').val();
+  return $('#discount-code').val();
 }

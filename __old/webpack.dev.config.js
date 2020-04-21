@@ -10,13 +10,13 @@ module.exports = {
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
       './src/index.js'
     ],
-    'modules/ping/index': [
+    'modules/discount-code/index': [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      './src/modules/ping/index.js'
+      './src/modules/discount-code/index.js'
     ],
-    'modules/customsplit/index': [
+    'modules/discount-redemption-split/index': [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      './src/modules/customsplit/index.js'
+      './src/modules/discount-redemption-split/index.js'
     ]
   },
   output: {
@@ -92,15 +92,15 @@ module.exports = {
       excludeChunks: ['server']
     }),
     new HtmlWebPackPlugin({
-      template: "./src/modules/ping/html/index.html",
-      filename: "./modules/ping/index.html",
-      chunks: ['modules/ping/index'],
+      template: "./src/modules/discount-code/html/index.html",
+      filename: "./modules/discount-code/index.html",
+      chunks: ['modules/discount-code/index'],
       excludeChunks: ['server']
     }),
     new HtmlWebPackPlugin({
-      template: "./src/modules/customsplit/html/index.html",
-      filename: "./modules/customsplit/index.html",
-      chunks: ['modules/customsplit/index'],
+      template: "./src/modules/discount-redemption-split/html/index.html",
+      filename: "./modules/discount-redemption-split/index.html",
+      chunks: ['modules/discount-redemption-split/index'],
       excludeChunks: ['server']
     }),
     new MiniCssExtractPlugin({

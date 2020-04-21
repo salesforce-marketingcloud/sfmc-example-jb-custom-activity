@@ -44,7 +44,7 @@ var execute = (req, res) => {
 };
 
 export default {
-  name: 'customsplit',
+  name: 'discount-redemption-split',
   routes: [{
       path: '/config.json',
       method: 'GET',

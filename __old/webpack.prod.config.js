@@ -12,11 +12,11 @@ module.exports = {
     main: [
       './src/index.js'
     ],
-    'modules/ping/index': [
-      './src/modules/ping/index.js'
+    'modules/discount-code/index': [
+      './src/modules/discount-code/index.js'
     ],
-    'modules/customsplit/index': [
-      './src/modules/customsplit/index.js'
+    'modules/discount-redemption-split/index': [
+      './src/modules/discount-redemption-split/index.js'
     ]
   },
   output: {
@@ -90,15 +90,15 @@ module.exports = {
       excludeChunks: ['server']
     }),
     new HtmlWebPackPlugin({
-      template: "./src/modules/ping/html/index.html",
-      filename: "./modules/ping/index.html",
-      chunks: ['modules/ping/index'],
+      template: "./src/modules/discount-code/html/index.html",
+      filename: "./modules/discount-code/index.html",
+      chunks: ['modules/discount-code/index'],
       excludeChunks: ['server']
     }),
     new HtmlWebPackPlugin({
-      template: "./src/modules/customsplit/html/index.html",
-      filename: "./modules/customsplit/index.html",
-      chunks: ['modules/customsplit/index'],
+      template: "./src/modules/discount-redemption-split/html/index.html",
+      filename: "./modules/discount-redemption-split/index.html",
+      chunks: ['modules/discount-redemption-split/index'],
       excludeChunks: ['server']
     }),
     new MiniCssExtractPlugin({

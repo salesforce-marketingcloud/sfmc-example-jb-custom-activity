@@ -9,8 +9,8 @@ const config = (req) => {
     type: 'REST',
     lang: {
       'en-US': {
-        name: 'Example Ping!',
-        description: 'Ping service endpoint and reply back with a message you specify in the activities settings.'
+        name: 'Example discount-code!',
+        description: 'discount-code service endpoint and reply back with a message you specify in the activities settings.'
       }
     },
     arguments: {
@@ -19,21 +19,21 @@ const config = (req) => {
         outArguments: [],
         // Fill in the host with the host that this is running on.
         // It must run under HTTPS
-        url: `https://${req.headers['host']}/modules/ping/execute`
+        url: `https://${req.headers['host']}/modules/discount-code/execute`
       }
     },
     configurationArguments: {
       save: {
-        url: `https://${req.headers['host']}/modules/ping/save`
+        url: `https://${req.headers['host']}/modules/discount-code/save`
       },
       publish: {
-        url: `https://${req.headers['host']}/modules/ping/publish`
+        url: `https://${req.headers['host']}/modules/discount-code/publish`
       },
       validate: {
-        url: `https://${req.headers['host']}/modules/ping/validate`
+        url: `https://${req.headers['host']}/modules/discount-code/validate`
       },
       stop: {
-        url: `https://${req.headers['host']}/modules/ping/stop`
+        url: `https://${req.headers['host']}/modules/discount-code/stop`
       }
     },
     userInterfaces: {

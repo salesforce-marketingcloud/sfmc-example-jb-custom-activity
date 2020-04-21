@@ -25,14 +25,14 @@ const execute = (req, res) => {
   
 
   // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
-  var pingInArgument = getInArgument('ping') || 'nothing';
+  var discountCodeInArgument = getInArgument('discount-code') || 'nothing';
 
 
   const status = 200;
 
   var sendResponse = () => {
     var responseObject = {
-      pong: pingInArgument
+      pong: discountCodeInArgument
     };
 
     console.log('responseObject', JSON.stringify(responseObject));
@@ -45,7 +45,7 @@ const execute = (req, res) => {
 };
 
 export default {
-  name: 'ping',
+  name: 'discount-code',
   routes: [{
       path: '/config.json',
       method: 'GET',

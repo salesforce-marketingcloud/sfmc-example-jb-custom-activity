@@ -8,8 +8,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 
 import path from 'path'
 
-import ping from '../modules/ping/server';
-import customsplit from '../modules/customsplit/server';
+import discount-code from '../modules/discount-code/server';
+import discount-redemption-split from '../modules/discount-redemption-split/server';
 
 import bodyParser from 'body-parser';
 
@@ -17,8 +17,8 @@ import bodyParser from 'body-parser';
 const MODULES_BASE_PATH = '../src/modules';
 
 const modules = [
-  ping,
-  customsplit
+  discount-code,
+  discount-redemption-split
 ];
 
 const app = express(),
