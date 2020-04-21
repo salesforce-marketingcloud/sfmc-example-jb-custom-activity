@@ -96,7 +96,7 @@ function onDoneButtonClick() {
     const option = select.options[select.selectedIndex];
 
     activity.arguments.execute.inArguments = [{
-        discountCode: option.value,
+        discount: option.value,
     }];
 
     console.log('----------------------------');
