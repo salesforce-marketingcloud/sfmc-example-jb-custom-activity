@@ -8,7 +8,6 @@ import Postmonger from 'postmonger';
 
 const connection = new Postmonger.Session();
 let activity = null;
-let doneOnce = false;
 
 document.addEventListener('DOMContentLoaded', function main() {
 
