@@ -1,9 +1,9 @@
-const pingExample = require('./modules/ping/webpack.config');
-const splitExample = require('./modules/customsplit/webpack.config');
+const discountCodeExample = require('./modules/discount-code/webpack.config');
+const splitExample = require('./modules/discount-redemption-split/webpack.config');
 
 module.exports = function(env, argv) {
     return [
-        pingExample(env, argv),
+        discountCodeExample(env, argv),
         splitExample(env, argv),
     ];
 };

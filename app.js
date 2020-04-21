@@ -3,8 +3,8 @@ const path = require('path');
 require('body-parser');
 
 const submodules = [
-    require('./modules/ping/app'),
-    require('./modules/customsplit/app'),
+    require('./modules/discount-code/app'),
+    require('./modules/discount-redemption-split/app'),
 ];
 
 const app = express();

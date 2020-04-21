@@ -1,9 +1,9 @@
 {
-  "name": "sfmc-custom-activity-ping-example",
-  "version": "1.0.0",
+  "name": "sfmc-jb-custom-activity-example",
+  "version": "0.0.1",
   "main": "app.js",
   "author": "Salesforce Marketing Cloud",
-  "description": "Custom Journey Builder Activity",
+  "description": "Journey Builder - Custom Activity",
   "scripts": {
     "dev": "npm start & webpack --watch",
     "build": "webpack --mode production",

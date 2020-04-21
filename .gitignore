@@ -1,7 +1,7 @@
 # WEBPACK
 dist
-modules/ping/dist
-modules/customsplit/dist
+modules/discount-code/dist
+modules/discount-redemption-split/dist
 
 # NODE/NPM/GRUNT
 node_modules

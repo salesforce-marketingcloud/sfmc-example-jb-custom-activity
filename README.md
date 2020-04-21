@@ -17,7 +17,7 @@ Navigate to http://localhost:8080/
 ## Examples
 
 
-### /ping-example
+### /discount-code-example
 Simple example of a custom activity.
 
 
