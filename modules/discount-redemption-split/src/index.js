@@ -21,10 +21,35 @@ document.addEventListener('DOMContentLoaded', function main() {
 
     // Journey Builder will trigger "initActivity" after it receives the "ready" event
     connection.on('initActivity', onInitActivity);
+    connection.on('requestedInteractionDefaults', requestedInteractionDefaults);
+    connection.on('requestedInteraction', requestedInteraction);
 
-    // signal Journey Builder that we're ready to receive the activity...
+    // We're all set! let's signal Journey Builder
+    // that we're ready to receive the activity payload...
+
+    // Tell the parent iFrame that we are ready.
     connection.trigger('ready');
+
+    // Tell the parent iFrame we want the Interaction Defaults
+    connection.trigger('requestInteractionDefaults');
+
+    // Tell the parent iFrame we want the Interaction
+    connection.trigger('requestInteraction');
 });
+
+function requestedInteractionDefaults(payload) {
+    console.log('-------- requestedInteractionDefaults --------');
+    console.log('payload\n', JSON.stringify(payload, null, 4));
+    console.log('requestInteraction', payload);
+    console.log('---------------------------------------------');
+}
+
+function requestedInteraction(payload) {
+    console.log('-------- requestedInteraction --------');
+    console.log('payload\n', JSON.stringify(payload, null, 4));
+    console.log('requestInteraction', payload);
+    console.log('--------------------------------------');
+}
 
 // this function is triggered by Journey Builder after it receives the "ready" signal
 function onInitActivity(payload) {
