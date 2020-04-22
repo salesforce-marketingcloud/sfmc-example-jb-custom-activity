@@ -120,22 +120,36 @@ module.exports = function splitExample(app, options) {
               }
             }
           }
+          console.log("Unable To Find In Argument: ", k);
           return;
         }
 
         // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
-        var path = getInArgument('path') || 'nothing';
+        let discountCode = getInArgument('discountCode') || 'nothing';
 
-        const status = 200;
+      console.log('discount code:', discountCode);
 
-        var responseObject = {
-          branchResult: path
-        };
-
-        console.log('responseObject', JSON.stringify(responseObject));
-
-
-        return res.status(200).json(responseObject);
+      if(discountCode && discountCode.length > 0) {
+          switch (discountCode[0]) {
+              case 'A':
+                  return res.status(200).json({branchResult: 'no_action'});
+                  break;
+              case 'B':
+                  return res.status(200).json({branchResult: 'viewed_item'});
+                  break;
+              case 'C':
+                  return res.status(200).json({branchResult: 'abandoned_cart'});
+                  break;
+              case 'D':
+              case 'E':
+              default:
+                  return res.status(200).json({branchResult: 'purchased_item'});
+                  break;
+          }
+      } else {
+          // Fail the contact, we don't know this discount code.
+          return res.status(400).json({});
+      }
     });
 
 };

@@ -52,26 +52,9 @@ function onInitActivity(payload) {
         return `<option value="${value}">${text}</option>`;
     });
 
-    document.getElementById('path').innerHTML = selectOptions.join('');
-
-    const pathArgument = inArguments.find((arg) => arg.path);
-
-    console.log('Path Argument', pathArgument);
-
-}
-
-function onPathSelectChange() {
-    // enable or disable the done button when the select option changes
-    const select = document.getElementById('path');
-
-    if (select.selectedIndex) {
-        document.getElementById('done').removeAttribute('disabled');
-    } else {
-        document.getElementById('done').setAttribute('disabled', '');
-    }
-
-    // let journey builder know the activity has changes
-    connection.trigger('setActivityDirtyState', true);
+    // There is no need to have the disabled attribute on the close button as there
+    // are no options for the user to select.
+    document.getElementById('done').removeAttribute('disabled');
 }
 
 function onDoneButtonClick() {
@@ -83,13 +66,6 @@ function onDoneButtonClick() {
     activity['metaData'].isConfigured = true;
 
     // get the option that the user selected and save it to
-    const select = document.getElementById('path');
-    const option = select.options[select.selectedIndex];
-
-    activity.arguments.execute.inArguments = [{
-        path: option.value
-    }];
-
     console.log('----------------------------');
     console.log('saving', activity);
     console.log('----------------------------');
@@ -109,7 +85,6 @@ function onCancelButtonClick() {
 function setupEventHandlers() {
     document.getElementById('done').addEventListener('click', onDoneButtonClick);
     document.getElementById('cancel').addEventListener('click', onCancelButtonClick);
-    document.getElementById('path').addEventListener('change', onPathSelectChange);
 }
 
 // this function is for example purposes only. it sets ups a Postmonger
@@ -152,8 +127,12 @@ function setupExampleTestHarness() {
             configurationArguments: {},
             arguments: {
                 execute: {
-                    inArguments: [],
-                    outArguments: [],
+                    inArguments: [[{
+                        discount: "{{Interaction.discount}}",
+                    }, {
+                        discountCode: "{{Interaction.discountCode}}"
+                    }]],
+                    outArguments: []
                 }
             },
             outcomes: [

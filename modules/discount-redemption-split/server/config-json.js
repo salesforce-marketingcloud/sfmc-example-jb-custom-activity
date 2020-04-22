@@ -17,7 +17,11 @@ module.exports = function configJSON(req) {
     },
     arguments: {
       execute: {
-        inArguments: [],
+        inArguments: [{
+          discount: "{{Interaction.discount}}",
+        }, {
+          discountCode: "{{Interaction.discountCode}}"
+        }],
         outArguments: [],
         // Fill in the host with the host that this is running on.
         // It must run under HTTPS
@@ -81,6 +85,11 @@ module.exports = function configJSON(req) {
       arguments: {
         execute: {
           inArguments: [{
+            discountCode: {
+              dataType: 'Text',
+              direction: 'in',
+              access: 'visible'
+            },
             discountCode: {
               dataType: 'Text',
               direction: 'in',
