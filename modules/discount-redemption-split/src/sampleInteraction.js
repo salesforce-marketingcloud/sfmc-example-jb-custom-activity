@@ -1,52 +1,144 @@
 const onInitActivity = {
-    name: '',
-    key: 'EXAMPLE-1',
-    metaData: {},
-    configurationArguments: {},
-    arguments: {
-        execute: {
-            inArguments: [[{
-                discount: "{{Context.discount}}",
-            }, {
-                discountCode: "{{Context.discountCode}}"
-            }]],
-            outArguments: []
+    "name": "Redemption Code Engagement",
+    "id": "0440a8d8-5c96-43ab-bacc-2a585c2d2a53",
+    "key": "REST-2",
+    "type": "REST",
+    "arguments": {
+        "executionMode": "{{Context.ExecutionMode}}",
+        "definitionId": "{{Context.DefinitionId}}",
+        "activityId": "{{Activity.Id}}",
+        "contactKey": "{{Context.ContactKey}}",
+        "execute": {
+            "inArguments": [
+                {
+                    "discount": "{{Interaction.REST-3.discount}}"
+                },
+                {
+                    "discountCode": "{{Interaction.REST-3.discountCode}}"
+                }
+            ],
+            "outArguments": [],
+            "url": "https://sfmc-example-custom-activity.herokuapp.com/modules/discount-redemption-split/execute"
+        },
+        "testExecute": "",
+        "startActivityKey": "{{Context.StartActivityKey}}",
+        "definitionInstanceId": "{{Context.DefinitionInstanceId}}",
+        "requestObjectId": "{{Context.RequestObjectId}}"
+    },
+    "configurationArguments": {
+        "save": {
+            "url": "https://sfmc-example-custom-activity.herokuapp.com/modules/discount-redemption-split/save"
+        },
+        "testSave": "",
+        "publish": {
+            "url": "https://sfmc-example-custom-activity.herokuapp.com/modules/discount-redemption-split/publish"
+        },
+        "testPublish": "",
+        "unpublish": "",
+        "stop": {
+            "url": "https://sfmc-example-custom-activity.herokuapp.com/modules/discount-redemption-split/stop"
+        },
+        "testStop": "",
+        "testUnpublish": "",
+        "partnerActivityId": "",
+        "validate": {
+            "url": "https://sfmc-example-custom-activity.herokuapp.com/modules/discount-redemption-split/validate"
+        },
+        "testValidate": "",
+        "outArgumentSchema": {}
+    },
+    "metaData": {
+        "icon": "https://sfmc-example-custom-activity.herokuapp.com/modules/discount-redemption-split/images/icon.svg",
+        "category": "customer",
+        "iconSmall": "",
+        "statsContactIcon": "",
+        "original_icon": "images/icon.svg",
+        "isConfigured": true
+    },
+    "schema": {
+        "arguments": {
+            "execute": {
+                "inArguments": [
+                    {
+                        "discountCode": {
+                            "dataType": "Text",
+                            "isNullable": false,
+                            "direction": "In",
+                            "readOnly": false,
+                            "access": "Visible"
+                        },
+                        "discount": {
+                            "dataType": "Number",
+                            "isNullable": false,
+                            "direction": "In",
+                            "readOnly": false,
+                            "access": "Visible"
+                        }
+                    }
+                ],
+                "outArguments": []
+            }
         }
     },
-    outcomes: [
+    "editable": true,
+    "outcomes": [
         {
-            arguments: {
-                branchResult: 'no_action'
+            "arguments": {
+                "branchResult": "no_activity"
             },
-            metaData: {
-                label: 'No Activity'
-            }
+            "metaData": {
+                "label": "No Activity",
+                "invalid": false
+            },
+            "key": "72997ab9-896e-472f-9551-629a26d2e0ab",
+            "next": "WAITBYDURATION-1"
         },
         {
-            arguments: {
-                branchResult: 'viewed_item'
+            "arguments": {
+                "branchResult": "viewed_item"
             },
-            metaData: {
-                label: 'Viewed Item'
-            }
+            "metaData": {
+                "label": "Viewed Item",
+                "invalid": false
+            },
+            "key": "9e275a12-6216-4526-94f0-0d4767faa7b8",
+            "next": "WAITBYDURATION-2"
         },
         {
-            arguments: {
-                branchResult: 'abandoned_cart'
+            "arguments": {
+                "branchResult": "abandoned_cart"
             },
-            metaData: {
-                label: 'Abandoned Cart'
-            }
+            "metaData": {
+                "label": "Abandoned Cart",
+                "invalid": false
+            },
+            "key": "8959088e-5d23-4522-b25a-856d06d23763",
+            "next": "REST-3"
         },
         {
-            arguments: {
-                branchResult: 'purchased_item'
+            "arguments": {
+                "branchResult": "purchased_item"
             },
-            metaData: {
-                label: 'Purchased Item'
-            }
+            "metaData": {
+                "label": "Purchased Item",
+                "invalid": false
+            },
+            "key": "0bb3b908-3e88-49e8-bd64-05ba820ac9c2",
+            "next": "WAITBYDURATION-4"
+        },
+        {
+            "arguments": {
+                "branchResult": "invalid_code"
+            },
+            "metaData": {
+                "label": "Invalid Code",
+                "invalid": false
+            },
+            "key": "9027e384-6b1e-4380-b61c-fce51e76446d",
+            "next": "WAITBYDURATION-5"
         }
-    ]
+    ],
+    "errors": null
 };
 
 const requestedInteractionDefaults = {
@@ -63,10 +155,11 @@ const requestedInteractionDefaults = {
         }
     }
 };
+
 const requestedInteraction = {
     "id": "c84b8fb2-bb59-4402-b878-f28fa263e8d7",
     "version": 4,
-    "name": "New Journey - April 21 2020 5.00 PM",
+    "name": "Journey Name",
     "description": "",
     "workflowApiVersion": 1,
     "entryMode": "MultipleEntries",

@@ -12,7 +12,7 @@
 //    - stop
 
 const express = require('express');
-const configJSON = require('./server/config-json');
+const configJSON = require('./src/config-json');
 
 // setup the discount-code example app
 module.exports = function discountCodeExample(app, options) {
@@ -31,7 +31,7 @@ module.exports = function discountCodeExample(app, options) {
     app.get('/modules/discount-code/index.html', function(req, res) {
         // you can use your favorite templating library to generate your html file.
         // this example keeps things simple and just returns a static file
-        return res.sendFile(`${moduleDirectory}/server/index.html`);
+        return res.sendFile(`${moduleDirectory}/src/index.html`);
     });
 
     // setup config.json route

@@ -133,7 +133,6 @@ function onDiscountCodeSelectChange() {
 
 function selectDiscountCodeOption(value) {
     const select = document.getElementById('discount-code');
-    window.s = select;
     const selectOption = select.querySelector(`[value='${value}']`);
 
     if (selectOption) {

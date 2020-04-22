@@ -5,12 +5,14 @@
 // you check out the "discount-code" module before jumdiscount-code into this one
 
 import Postmonger from 'postmonger';
+
+// This contains sample life-cycle events.
 import SampleInteraction from './sampleInteraction.js';
 
 const connection = new Postmonger.Session();
 let activity = null;
 
-document.addEventListener('DOMContentLoaded', function main() {
+document.addEventListener('DOMContentLoaded', () => {
 
     // Setup a test harness so we can interact with our custom activity
     // outside of journey builder using window functions and browser devtools.
@@ -44,12 +46,62 @@ function requestedInteractionDefaults(payload) {
     console.log('requestInteraction', payload);
     console.log('---------------------------------------------');
 }
-
 function requestedInteraction(payload) {
     console.log('-------- requestedInteraction --------');
     console.log('payload\n', JSON.stringify(payload, null, 4));
     console.log('requestInteraction', payload);
     console.log('--------------------------------------');
+
+    let selectedValue;
+
+    // determine the selected item (if there is one)
+    if(activity.arguments.execute.inArguments) {
+        const existingSelection = activity.arguments.execute.inArguments[0].discount ?? activity.arguments.execute.inArguments[0].discountCode;
+
+        if(existingSelection.split('.').length == 3) {
+            selectedValue = existingSelection.split('.')[1];
+        }
+    }
+
+    // populate the select dropdown.
+    const selectElement = document.getElementById('discount-code');
+
+    payload.activities.forEach(a => {
+        if(a.schema && a.schema.arguments && a.schema.arguments.execute &&
+            a.schema.arguments.execute.outArguments && a.schema.arguments.execute.outArguments.length > 0) {
+            a.schema.arguments.execute.outArguments.forEach(inArg => {
+                if(inArg.discountCode) {
+                    let option = document.createElement("option");
+                    option.text = `${a.name} - (${a.key})`;
+                    option.value = a.key;
+                    selectElement.add(option);
+                }
+            });
+        }
+    });
+
+    // Display the warning if there is an issue, otherwise, display the
+    if(selectElement.childElementCount == 0) {
+        document.getElementById('main-form').style.display = 'hidden';
+        document.getElementById('warning').style.display = 'block';
+    } else {
+        document.getElementById('main-form').style.display = 'block';
+        document.getElementById('warning').style.display = 'hidden';
+
+        // if we have a previously selected value, repopulate that value.
+        if(selectedValue) {
+            const selectOption = selectElement.querySelector(`[value='${selectedValue}']`);
+
+            if (selectOption) {
+                selectOption.selected = true;
+            } else {
+                console.log('Could not select value from list', `[value='${selectedValue}]'`);
+            }
+        }
+
+        // let journey builder know the activity has changes
+        connection.trigger('setActivityDirtyState', true);
+    }
 }
 
 // this function is triggered by Journey Builder after it receives the "ready" signal
@@ -81,6 +133,20 @@ function onDoneButtonClick() {
 
     // you can set the name that appears below the activity with the name property
     activity.name = 'Code Engagement';
+
+    // get the option that the user selected and save it to
+    const select = document.getElementById('discount-code');
+    const option = select.options[select.selectedIndex];
+
+    // Iterate over the inArguments and replace the data-binding string
+    // to reflect the activity that they selected above.
+    activity.arguments.execute.inArguments.forEach(inArg => {
+        if(inArg.discount) {
+            inArg.discount = `Interaction.${option.value}.discount`;
+        } else if(inArg.discountCode) {
+            inArg.discountCode = `Interaction.${option.value}.discountCode`;
+        }
+    });
 
     // get the option that the user selected and save it to
     console.log('------------ triggering:updateActivity({obj}) ----------------');
@@ -145,5 +211,7 @@ function setupExampleTestHarness() {
 
         // Simulated the completion of "requestedInteraction"
         jbSession.trigger('requestedInteraction', SampleInteraction.requestedInteraction);
+
+        window.jb.activity = SampleInteraction.onInitActivity;
     };
 }
