@@ -8,7 +8,7 @@ module.exports = function configJSON(req) {
       category: 'customer'
     },
     // For Custom Activity this must say, "REST"
-    type: 'REST',
+    type: 'RESTDECISION',
     lang: {
       // Internationalize your language here!
       'en-US': {
