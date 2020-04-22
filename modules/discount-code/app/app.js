@@ -31,7 +31,7 @@ module.exports = function discountCodeExample(app, options) {
     app.get('/modules/discount-code/index.html', function(req, res) {
         // you can use your favorite templating library to generate your html file.
         // this example keeps things simple and just returns a static file
-        return res.sendFile(`${moduleDirectory}/src/index.html`);
+        return res.sendFile(`${moduleDirectory}/html/index.html`);
     });
 
     // setup config.json route
