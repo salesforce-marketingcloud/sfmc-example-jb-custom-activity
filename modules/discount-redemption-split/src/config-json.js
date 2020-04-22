@@ -19,9 +19,7 @@ module.exports = function configJSON(req) {
     arguments: {
       execute: {
         inArguments: [{
-          discount: "{{Context.discount}}",
-        }, {
-          discountCode: "{{Context.discountCode}}"
+          discountCode: "{{Interaction.discountCode}}"
         }],
         outArguments: [],
         // Fill in the host with the host that this is running on.
@@ -97,11 +95,6 @@ module.exports = function configJSON(req) {
             discountCode: {
               dataType: 'Text',
               direction: 'in',
-              access: 'visible'
-            },
-            discount: {
-              dataType: 'Number',
-              direction: 'out',
               access: 'visible'
             }
           }],
