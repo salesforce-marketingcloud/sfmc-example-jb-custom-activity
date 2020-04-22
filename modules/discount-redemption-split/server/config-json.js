@@ -12,7 +12,7 @@ module.exports = function configJSON(req) {
     lang: {
       // Internationalize your language here!
       'en-US': {
-        name: 'Discount Redemption Split!',
+        name: 'Code Engagement',
         description: 'Check the status of the discount code.'
       }
     },

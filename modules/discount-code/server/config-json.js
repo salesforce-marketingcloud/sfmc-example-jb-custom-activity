@@ -10,8 +10,8 @@ module.exports = function configJSON(req) {
     type: 'REST',
     lang: {
       'en-US': {
-        name: 'Discount Code!',
-        description: 'discount-code service endpoint and reply back with a message you specify in the activities settings.'
+        name: 'Discount Code',
+        description: 'Issue a discount code to contact them to entice them to buy something.'
       }
     },
     arguments: {

@@ -5,6 +5,7 @@
 // you check out the "discount-code" module before jumdiscount-code into this one
 
 import Postmonger from 'postmonger';
+import SampleInteraction from './sampleInteraction.js';
 
 const connection = new Postmonger.Session();
 let activity = null;
@@ -79,7 +80,7 @@ function onDoneButtonClick() {
     activity['metaData'].isConfigured = true;
 
     // you can set the name that appears below the activity with the name property
-    activity.name = 'Redemption Code Engagement';
+    activity.name = 'Code Engagement';
 
     // get the option that the user selected and save it to
     console.log('------------ triggering:updateActivity({obj}) ----------------');
@@ -137,55 +138,12 @@ function setupExampleTestHarness() {
 
     // fire the ready signal with an example activity
     jb.ready = function() {
-        jbSession.trigger('initActivity', {
-            name: '',
-            key: 'EXAMPLE-1',
-            metaData: {},
-            configurationArguments: {},
-            arguments: {
-                execute: {
-                    inArguments: [[{
-                        discount: "{{Context.discount}}",
-                    }, {
-                        discountCode: "{{Context.discountCode}}"
-                    }]],
-                    outArguments: []
-                }
-            },
-            outcomes: [
-                {
-                    arguments: {
-                        branchResult: 'no_action'
-                    },
-                    metaData: {
-                        label: 'No Activity'
-                    }
-                },
-                {
-                    arguments: {
-                        branchResult: 'viewed_item'
-                    },
-                    metaData: {
-                        label: 'Viewed Item'
-                    }
-                },
-                {
-                    arguments: {
-                        branchResult: 'abandoned_cart'
-                    },
-                    metaData: {
-                        label: 'Abandoned Cart'
-                    }
-                },
-                {
-                    arguments: {
-                        branchResult: 'purchased_item'
-                    },
-                    metaData: {
-                        label: 'Purchased Item'
-                    }
-                }
-            ]
-        });
+        jbSession.trigger('initActivity', SampleInteraction.onInitActivity);
+
+        // Simulated the completion of "requestedInteractionDefaults"
+        jbSession.trigger('requestedInteractionDefaults', SampleInteraction.requestedInteractionDefaults);
+
+        // Simulated the completion of "requestedInteraction"
+        jbSession.trigger('requestedInteraction', SampleInteraction.requestedInteraction);
     };
 }
