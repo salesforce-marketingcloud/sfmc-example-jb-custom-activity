@@ -148,7 +148,7 @@ module.exports = function splitExample(app, options) {
           }
       } else {
           // Fail the contact, we don't know this discount code.
-          return res.status(400).json({});
+          return res.status(500).json({branchResult: 'invalid_code'});
       }
     });
 

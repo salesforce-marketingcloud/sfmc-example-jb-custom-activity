@@ -128,9 +128,9 @@ function setupExampleTestHarness() {
             arguments: {
                 execute: {
                     inArguments: [[{
-                        discount: "{{Interaction.discount}}",
+                        discount: "{{Context.discount}}",
                     }, {
-                        discountCode: "{{Interaction.discountCode}}"
+                        discountCode: "{{Context.discountCode}}"
                     }]],
                     outArguments: []
                 }
