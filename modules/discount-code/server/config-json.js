@@ -6,10 +6,11 @@ module.exports = function configJSON(req) {
       icon: `images/icon.svg`,
       category: 'customer'
     },
+    // For Custom Activity this must say, "REST"
     type: 'REST',
     lang: {
       'en-US': {
-        name: 'Example discount-code!',
+        name: 'Discount Code!',
         description: 'discount-code service endpoint and reply back with a message you specify in the activities settings.'
       }
     },

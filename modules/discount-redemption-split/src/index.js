@@ -53,22 +53,13 @@ function requestedInteraction(payload) {
 
 // this function is triggered by Journey Builder after it receives the "ready" signal
 function onInitActivity(payload) {
+    // set the activity object from this payload. We'll refer to this object as we
+    // modify it before saving.
     activity = payload;
 
-    const hasInArguments = Boolean(
-        activity.arguments &&
-        activity.arguments.execute &&
-        activity.arguments.execute.inArguments &&
-        activity.arguments.execute.inArguments.length > 0
-    );
-
-    const inArguments = hasInArguments ? activity.arguments.execute.inArguments : [];
-
-    console.log('-------- Initialize --------');
-    console.log('activity\n', JSON.stringify(activity, null, 4));
-    console.log('Has In Arguments: ', hasInArguments);
-    console.log('inArguments', inArguments);
-    console.log('----------------------------');
+    console.log('-------- triggered:onInitActivity({obj}) --------');
+    console.log('activity:\n ', JSON.stringify(activity, null, 4));
+    console.log('-------------------------------------------------');
 
     // render all of this activity's outcomes into a drop down list
     const selectOptions = activity.outcomes.map((outcome) => {
@@ -83,17 +74,18 @@ function onInitActivity(payload) {
 }
 
 function onDoneButtonClick() {
-    // you can set the name that appears below the activity with the name property
-    activity.name = 'My Split Activity';
-
     // we set must metaData.isConfigured in order to tell JB that
     // this activity is ready for activation
     activity['metaData'].isConfigured = true;
 
+    // you can set the name that appears below the activity with the name property
+    activity.name = 'Redemption Code Engagement';
+
     // get the option that the user selected and save it to
-    console.log('----------------------------');
-    console.log('saving', activity);
-    console.log('----------------------------');
+    console.log('------------ triggering:updateActivity({obj}) ----------------');
+    console.log('Sending message back to updateActivity');
+    console.log('saving\n', JSON.stringify(activity, null, 4));
+    console.log('--------------------------------------------------------------');
 
     connection.trigger('updateActivity', activity);
 }

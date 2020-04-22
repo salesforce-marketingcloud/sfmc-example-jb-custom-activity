@@ -7,6 +7,7 @@ module.exports = function configJSON(req) {
       icon: `images/icon.svg`,
       category: 'customer'
     },
+    // For Custom Activity this must say, "REST"
     type: 'REST',
     lang: {
       // Internationalize your language here!

@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function main() {
 // this function is triggered by Journey Builder via Postmonger.
 // Journey Builder will send us a copy of the activity here
 function onInitActivity(payload) {
+
+    // set the activity object from this payload. We'll refer to this object as we
+    // modify it before saving.
     activity = payload;
 
     const hasInArguments = Boolean(
@@ -58,11 +61,11 @@ function onInitActivity(payload) {
 
     const inArguments = hasInArguments ? activity.arguments.execute.inArguments : [];
 
-    console.log('-------- Initialize --------');
+    console.log('-------- triggered:onInitActivity({obj}) --------');
     console.log('activity:\n ', JSON.stringify(activity, null, 4));
     console.log('Has In Arguments: ', hasInArguments);
     console.log('inArguments', inArguments);
-    console.log('----------------------------');
+    console.log('-------------------------------------------------');
 
     // check if this activity has an incoming argument.
     // this would be set on the server side when the activity executes
@@ -82,9 +85,6 @@ function onInitActivity(payload) {
 }
 
 function onDoneButtonClick() {
-    // you can set the name that appears below the activity with the name property
-    activity.name = 'My Discount-Code Activity';
-
     // we set must metaData.isConfigured in order to tell JB that
     // this activity is ready for activation
     activity.metaData.isConfigured = true;
@@ -97,9 +97,13 @@ function onDoneButtonClick() {
         discount: option.value,
     }];
 
-    console.log('----------------------------');
-    console.log('saving', activity);
-    console.log('----------------------------');
+    // you can set the name that appears below the activity with the name property
+    activity.name = `Get ${activity.arguments.execute.inArguments[0].discount}% Discount`;
+
+    console.log('------------ triggering:updateActivity({obj}) ----------------');
+    console.log('Sending message back to updateActivity');
+    console.log('saving\n', JSON.stringify(activity, null, 4));
+    console.log('--------------------------------------------------------------');
 
     connection.trigger('updateActivity', activity);
 }
