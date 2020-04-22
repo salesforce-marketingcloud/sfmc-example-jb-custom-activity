@@ -142,9 +142,9 @@ function onDoneButtonClick() {
     // to reflect the activity that they selected above.
     activity.arguments.execute.inArguments.forEach(inArg => {
         if(inArg.discount) {
-            inArg.discount = `Interaction.${option.value}.discount`;
+            inArg.discount = `{{Interaction.${option.value}.discount}}`;
         } else if(inArg.discountCode) {
-            inArg.discountCode = `Interaction.${option.value}.discountCode`;
+            inArg.discountCode = `{{Interaction.${option.value}.discountCode}}`;
         }
     });
 
