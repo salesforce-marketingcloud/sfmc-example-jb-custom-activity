@@ -140,9 +140,13 @@ module.exports = function discountCodeExample(app, options) {
          * Note: This function is for demonstration purposes only and is not designed
          * to generate real random codes. The first digit is always A, B, C, D, or E.
          *
-         * @returns {string}
-         * A random code that looks like the following:
-         * EQAEM-35827
+         * @returns {Object}
+         *
+         * Example Response Object
+         * {
+         *    "discount":"15",
+         *    "discountCode":"ADUXN-96454-15%"
+         * }
          */
         function generateRandomCode() {
             let toReturn = String.fromCharCode(65+(Math.random() * 5));

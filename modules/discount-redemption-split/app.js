@@ -132,19 +132,16 @@ module.exports = function splitExample(app, options) {
       if(discountCode && discountCode.length > 0) {
           switch (discountCode[0]) {
               case 'A':
+                  console.log('')
                   return res.status(200).json({branchResult: 'no_action'});
-                  break;
               case 'B':
                   return res.status(200).json({branchResult: 'viewed_item'});
-                  break;
               case 'C':
                   return res.status(200).json({branchResult: 'abandoned_cart'});
-                  break;
               case 'D':
               case 'E':
               default:
                   return res.status(200).json({branchResult: 'purchased_item'});
-                  break;
           }
       } else {
           // Fail the contact, we don't know this discount code.
