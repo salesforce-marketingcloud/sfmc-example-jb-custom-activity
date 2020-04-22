@@ -1,5 +1,5 @@
 const express = require('express');
-const configJSON = require('./src/config-json');
+const configJSON = require('../config/config-json');
 
 // setup the split example app
 module.exports = function splitExample(app, options) {
