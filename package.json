@@ -5,17 +5,23 @@
   "author": "Salesforce Marketing Cloud",
   "description": "Journey Builder - Custom Activity",
   "scripts": {
-    "dev": "npm start & webpack --watch",
+    "dev": "concurrently \"npm start\" \"webpack --watch\"",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "heroku-prebuild": "npm install --dev",
-    "start": "node ./app.js"
+    "start": "node ./app.js",
+    "bump": "npm run bump:patch",
+    "bump:major": "./node_modules/version-bump-prompt/bin/bump.js --major --all --tag",
+    "bump:minor": "./node_modules/version-bump-prompt/bin/bump.js --minor --all --tag",
+    "bump:patch": "./node_modules/version-bump-prompt/bin/bump.js --patch --all --tag"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "concurrently": "^5.1.0",
     "copy-webpack-plugin": "^5.1.1",
+    "version-bump-prompt": "^6.0.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
