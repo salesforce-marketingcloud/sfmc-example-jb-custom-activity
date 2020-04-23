@@ -14,13 +14,15 @@
 const express = require('express');
 const configJSON = require('../config/config-json');
 
+const path = require('path');
+
 // setup the discount-code example app
 module.exports = function discountCodeExample(app, options) {
     const moduleDirectory = `${options.rootDirectory}/modules/discount-code`;
 
     // setup static resources
-    app.use('/modules/discount-code/dist', express.static(`${moduleDirectory}/dist`));
-    app.use('/modules/discount-code/images', express.static(`${moduleDirectory}/images`));
+    app.use('/modules/discount-code/dist', express.static(path.normalize(`${moduleDirectory}/dist`)));
+    app.use('/modules/discount-code/images', express.static(path.normalize(`${moduleDirectory}/images`)));
 
     // setup the index redirect
     app.get('/modules/discount-code/', function(req, res) {
@@ -31,7 +33,7 @@ module.exports = function discountCodeExample(app, options) {
     app.get('/modules/discount-code/index.html', function(req, res) {
         // you can use your favorite templating library to generate your html file.
         // this example keeps things simple and just returns a static file
-        return res.sendFile(`${moduleDirectory}/html/index.html`);
+        return res.sendFile(path.normalize(`${moduleDirectory}/html/index.html`));
     });
 
     // setup config.json route

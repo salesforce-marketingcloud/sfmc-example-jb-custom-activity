@@ -1,13 +1,15 @@
 const express = require('express');
 const configJSON = require('../config/config-json');
 
+const path = require('path');
+
 // setup the split example app
 module.exports = function splitExample(app, options) {
     const moduleDirectory = `${options.rootDirectory}/modules/discount-redemption-split`;
 
     // setup static resources
-    app.use('/modules/discount-redemption-split/dist', express.static(`${moduleDirectory}/dist`));
-    app.use('/modules/discount-redemption-split/images', express.static(`${moduleDirectory}/images`));
+    app.use('/modules/discount-redemption-split/dist', express.static(path.normalize(`${moduleDirectory}/dist`)));
+    app.use('/modules/discount-redemption-split/images', express.static(path.normalize(`${moduleDirectory}/images`)));
 
     // setup the index redirect
     app.get('/modules/discount-redemption-split/', function(req, res) {
@@ -18,7 +20,7 @@ module.exports = function splitExample(app, options) {
     app.get('/modules/discount-redemption-split/index.html', function(req, res) {
         // you can use your favorite templating library to generate your html file.
         // this example keeps things simple and just returns a static file
-        return res.sendFile(`${moduleDirectory}/html/index.html`);
+        return res.sendFile(path.normalize(`${moduleDirectory}/html/index.html`));
     });
 
     // setup config.json route
