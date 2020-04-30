@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "app.js",
   "author": "Salesforce Marketing Cloud",
-  "description": "Journey Builder - Custom Activity",
+  "description": "Journey Builder Custom Activities",
+  "license": "BSD-3-Clause",
   "scripts": {
     "dev": "concurrently \"npm start\" \"webpack --watch\"",
     "build": "webpack --mode production",
