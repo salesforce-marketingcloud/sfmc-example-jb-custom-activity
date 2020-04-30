@@ -35,8 +35,6 @@ Example of a Rest Decision Split where your application tells the contact which 
 
 [RestDecision Documentation](https://developer.salesforce.com/docs/atlas.en-us.mc-app-development.meta/mc-app-development/extending-activities.htm)
 
----
-Further Reading:
 
-
-
+## License
+* Source code is licensed under [BSD 3-Clause](./licenses.txt)
