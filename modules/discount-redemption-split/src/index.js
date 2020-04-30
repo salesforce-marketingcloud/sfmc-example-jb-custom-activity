@@ -1,8 +1,10 @@
-// JOURNEY BUILDER CUSTOM ACTIVITY - CUSTOM SPLIT
+// JOURNEY BUILDER CUSTOM SPLIT ACTIVITY (Discount Redemption)
 // ````````````````````````````````````````````````````````````
-// This example demonstrates ... explain ....
+// This example demonstrates a Rest Decision Split where your application tells the
+// contact which way to go through the journey.
+//
 // We're building on concepts visited in previous examples so make sure
-// you check out the "discount-code" module before jumdiscount-code into this one
+// you check out the "discount-code" module before jumping into this one
 
 import Postmonger from 'postmonger';
 

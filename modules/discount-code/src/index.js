@@ -1,13 +1,14 @@
 // JOURNEY BUILDER CUSTOM ACTIVITY - discountCode ACTIVITY
 // ````````````````````````````````````````````````````````````
-// This example demonstrates ....
+// This example demonstrates a custom activity that utilizes an external service to generate
+// a discount code where the user inputs the discount percent in the configuration.
 //
-// Postmonger Events Reference can be found here:
+// Journey Builder's Postmonger Events Reference can be found here:
 // https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/using-postmonger.htm
 
 
 // Custom activities load inside an iframe. We'll use postmonger to manage
-// the Cross-Document Messaging between Journey Builder and the activity
+// the cross-document messaging between Journey Builder and the activity
 import Postmonger from 'postmonger';
 
 
