@@ -1,5 +1,5 @@
 # Salesforce Journey Builder - Custom Activity Examples
-----
+
 This repository contains a number of custom activity examples for Salesforce Journey Builder. These examples are 
 intended to help you understand how Journey Builder works and get a head start on building your own custom activities.
 
