@@ -50,4 +50,4 @@ We would like to hear from you if you have questions about these examples or if 
 examples that you would like to see included. Just log a new issue and we'll our best to help!
 
 ## License
-Source code is licensed under [BSD 3-Clause](./LICENCE.txt)
+Source code is licensed under [BSD 3-Clause](./LICENSE.txt)
