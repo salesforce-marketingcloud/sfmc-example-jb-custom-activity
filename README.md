@@ -45,6 +45,21 @@ Example of a Rest Decision Split where your application tells the contact which 
 
 [RestDecision Documentation](https://developer.salesforce.com/docs/atlas.en-us.mc-app-development.meta/mc-app-development/extending-activities.htm)
 
+### Timeout, Retry and Concurrent Execute of Requests
+We support below execution parameters to allow customer to config the timeout, retry. In case customer want to control these settings for each activity, they can use config.js file to show the
+config in UI and save it when save the journey.
+
+```
+execute.timeout - How long, in milliseconds, before each rest activity in the journey times out. Must be from 1,000 to 100,000 milliseconds. Default is 60,000 milliseconds.
+execute.retryCount - How many times to retry each rest activity in the journey after the rest activity times out. Must be from 0 to 5. Default is 0.
+execute.retryDelay - How long, in milliseconds, to wait before each rest activity in the journey is retried. Must be from 0 to 10,000 milliseconds. Default is 1,000 milliseconds.
+execute.concurrentRequests - How many rest activities to run in parallel. Must be from 1 to 50. Default is 1, which means no concurrent requests. Before you use concurrent requests, test the scalability and performance of the target site. If you observe increased gateway errors or timeouts, consider adding retry and increasing the timeout value.
+For details, please go to [Custom Activity Configuration(https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/custom-activity-config.htm)]
+```
+
+### Dedupe of requests
+When retry count is bigger than 1, our system will retry the request in case of network error, gateway error (5XX) or timeout.  It is recommended that customer to set timeout value to be a large value (such as 10,000 or 30,000) to avoid canceling requests by Journey Builder when server is still sending data.  In case  of retry, it might be possible that service already processed the request, but a duplicate request was sent from Journey Builder due to the above errors and retry.  We recommend customer to implement dedupe logical in their end.  For each request, we include two Guid fields `activityId` and `definitionInstanceId` in the request body.  User can parse the values from the payload and use the combination of these two values as a way to dedupe a request, i.e., when we trying the request, the above two fields are the same, but for different request, the values will be different.
+
 ## Contributing
 We would like to hear from you if you have questions about these examples or if you have ideas for other 
 examples that you would like to see included. Just log a new issue and we'll our best to help!
