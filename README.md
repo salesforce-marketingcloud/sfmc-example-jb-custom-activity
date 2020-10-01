@@ -46,19 +46,31 @@ Example of a Rest Decision Split where your application tells the contact which 
 [RestDecision Documentation](https://developer.salesforce.com/docs/atlas.en-us.mc-app-development.meta/mc-app-development/extending-activities.htm)
 
 ### Timeout, Retry and Concurrent Execute of Requests
-We support below execution parameters to allow customer to config the timeout, retry. In case customer want to control these settings for each activity, they can use config.js file to show the
-config in UI and save it when save the journey.
+We support the following execution parameters that allow you to configure the timeout and retry values Journey Builder should use when sending a request to the external web service that the custom activity will invoke. 
+
+It is possible to configure these values for each instance of a custom activity. Use config.js to show the
+config in the UI for configuring the custom activity and save it when saving the journey.
+
+For details, please go to [Custom Activity Configuration(https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/custom-activity-config.htm)]
 
 ```
 execute.timeout - How long, in milliseconds, before each rest activity in the journey times out. Must be from 1,000 to 100,000 milliseconds. Default is 60,000 milliseconds.
 execute.retryCount - How many times to retry each rest activity in the journey after the rest activity times out. Must be from 0 to 5. Default is 0.
 execute.retryDelay - How long, in milliseconds, to wait before each rest activity in the journey is retried. Must be from 0 to 10,000 milliseconds. Default is 1,000 milliseconds.
 execute.concurrentRequests - How many rest activities to run in parallel. Must be from 1 to 50. Default is 1, which means no concurrent requests. Before you use concurrent requests, test the scalability and performance of the target site. If you observe increased gateway errors or timeouts, consider adding retry and increasing the timeout value.
-For details, please go to [Custom Activity Configuration(https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/custom-activity-config.htm)]
 ```
 
 ### Dedupe of requests
-When retry count is bigger than 1, our system will retry the request in case of network error, gateway error (5XX) or timeout.  It is recommended that customer to set timeout value to be a large value (such as 10,000 or 30,000) to avoid canceling requests by Journey Builder when server is still sending data.  In case  of retry, it might be possible that service already processed the request, but a duplicate request was sent from Journey Builder due to the above errors and retry.  We recommend customer to implement dedupe logical in their end.  For each request, we include two Guid fields `activityId` and `definitionInstanceId` in the request body.  User can parse the values from the payload and use the combination of these two values as a way to dedupe a request, i.e., when we trying the request, the above two fields are the same, but for different request, the values will be different.
+When retry count is bigger than 1, our system will retry the request in case of network error, gateway error (5XX) or timeout.  It is recommended that the customer set timeout value to be a large value (such as 10,000 or 30,000) to avoid canceling requests by Journey Builder when server is still sending data.  In case  of retry, it might be possible that the external, to Journey Builder, service already processed the request, but a duplicate request was sent from Journey Builder due to the above errors and retry.  
+
+We recommend the developer of the web service the custom activity calls to implement dedupe logic.  For each request, we include two Guid fields `activityId` and `definitionInstanceId` in the request body.  Parse the values from the payload and use the combination of these two values as a way to dedupe a request. When Journey Builder is re-trying the request, the above two fields are the same, but for a different request, the values will be different.
+
+## Performance
+The performance of a journey that has a custom activity is directly related to the round trip latency from Journey Builder's system to the external web service and the scalability of the external web service.
+
+The Journey Builder team has observed custom activity implementations, which include the external web service the custom activity is calling, which can process as little as 20,000 contacts per hour. There are also performant implementations of custom activity and the associated web service they are calling which can process as much as 5 million contacts per hour.
+
+To attain higher performance you will have to engage with your Salesforce account team such that you can get help tuning the paramaters that play a role in performance. 
 
 ## Contributing
 We would like to hear from you if you have questions about these examples or if you have ideas for other 
