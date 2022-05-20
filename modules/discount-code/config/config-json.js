@@ -3,8 +3,8 @@ module.exports = function configJSON(req) {
     workflowApiVersion: '1.1',
     metaData: {
       // the location of our icon file
-      icon: `images/icon.svg`,
-      category: 'customer'
+      icon: `images/icon.png`,
+      category: 'message'
     },
     // For Custom Activity this must say, "REST"
     type: 'REST',
@@ -50,7 +50,7 @@ module.exports = function configJSON(req) {
     userInterfaces: {
       configurationSupportsReadOnlyMode : true,
       configInspector: {
-        size: 'scm-lg',
+        size: 'medium',
         emptyIframe: true
       }
     },
