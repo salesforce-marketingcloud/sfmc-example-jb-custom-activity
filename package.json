@@ -1,6 +1,10 @@
 {
   "name": "sfmc-jb-custom-activity-example",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.11.1"
+  },
+  
   "main": "app.js",
   "author": "Salesforce Marketing Cloud",
   "description": "Journey Builder Custom Activities",
@@ -33,4 +37,5 @@
     "postmonger": "0.0.16",
     "serve-static": "^1.12.3"
   }
+  
 }
